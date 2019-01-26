@@ -1,6 +1,8 @@
 # Webmaker5610
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.2.3.
+I am a graduate student at Northeastern University. I have a master degree in biology and started learning computer science since Sept. 2017. I interned at Amazon AI last fall semester. This project is a web maker website for web development course. It was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.2.3.
+Heroku Link: https://webdev-yangsun-cs5610.herokuapp.com/
+Project Link: https://github.com/ysunag/webmaker5610
 
 ## Development server
 
