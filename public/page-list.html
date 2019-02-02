@@ -4,29 +4,31 @@
 <head>
   <meta charset="UTF-8">
   <title>Page List</title>
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
   <link href="css/style.css" rel="stylesheet"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 </head>
 <body>
-<nav class="navbar navbar-default navbar-fixed-top">
+<nav class="navbar fixed-top cl-grey-navbar">
   <div class="container-fluid">
-    <a href="website-list.html" class="navbar-text pull-left cl-text-black cl-icon-padding">
-        <span class="glyphicon glyphicon-chevron-left">
-        </span>
+    <div>
+      <a href="website-list.html" class="navbar-brand cl-text-black cl-icon-padding">
+        <i class="fas fa-angle-left"></i>
+      </a>
+      <a class="navbar-brand cl-text-black cl-text-bold cl-text-grey" href="#">
+        Pages
+      </a>
+    </div>
+    <a href="page-new.html" class="navbar-brand cl-text-black float-right cl-icon-padding">
+      <i class="fas fa-plus"></i>
     </a>
-    <a href="page-new.html" class="navbar-text pull-right cl-icon-padding cl-text-black cl-icon-padding">
-        <span class="glyphicon glyphicon-plus">
-        </span>
-    </a>
-    <a class="navbar-brand cl-text-white cl-text-bold" href="#">
-      Pages
-    </a>
+
   </div>
 </nav>
 
 
-<div class="container">
+<div class="container cl-container-left-padding">
   <ul class="list-group cl-list-group-borderless">
     <li class="list-group-item cl-list-item-borderless">
       <a href="page-edit.html"><span class="glyphicon glyphicon-cog pull-right"></span></a>
@@ -51,13 +53,11 @@
   </ul>
 </div>
 
-<nav class="navbar navbar-default navbar-fixed-bottom">
-  <div class="container-fluid row">
-    <div class="pull-right navbar-text">
-      <a href="profile.html" class="cl-icon-padding">
-        <span class="glyphicon glyphicon-user"></span>
-      </a>
-    </div>
+<nav class="navbar fixed-bottom cl-grey-navbar">
+  <div class="container-fluid justify-content-end">
+    <a href="profile.html" class="navbar-brand cl-icon-padding cl-text-blue">
+      <span class="fas fa-user"></span>
+    </a>
   </div>
 </nav>
 </body>

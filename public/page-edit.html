@@ -3,34 +3,31 @@
 <head>
   <meta charset="UTF-8">
   <title>Page List</title>
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet"/>
   <link href="css/style.css" rel="stylesheet"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 </head>
 <body>
-<nav class="navbar navbar-default navbar-fixed-top">
-  <div class="container-fluid row">
 
-    <div class="navbar-text pull-left">
-      <a href="page-list.html" class="cl-text-black cl-icon-padding">
-          <span class="glyphicon glyphicon-chevron-left">
-          </span>
+<nav class="navbar fixed-top cl-grey-navbar">
+  <div class="container-fluid">
+    <div>
+      <a href="page-list.html" class="navbar-brand cl-text-black cl-icon-padding">
+        <i class="fas fa-angle-left"></i>
+      </a>
+      <a class="navbar-brand cl-text-black cl-text-bold cl-text-grey" href="#">
+        Edit Page
       </a>
     </div>
-    <div class="navbar-text pull-right">
-      <a href="page-list.html" class="cl-icon-padding cl-text-black">
-          <span class="glyphicon glyphicon-ok">
-          </span>
-      </a>
-    </div>
-    <a class="navbar-brand cl-text-white cl-text-bold" href="#">
-      Edit Page
+    <a href="page-list.html" class="navbar-brand cl-text-black float-right cl-icon-padding">
+      <i class="fas fa-check"></i>
     </a>
   </div>
 </nav>
 
-<div class="container">
-  <form>
+
+<div class="container cl-container-left-padding">
+  <form class="cl-text-padding">
     <div class="form-group">
       <label for="page-name">Name</label>
       <input type="text" class="form-control" id="page-name" placeholder="Page Name">
@@ -43,13 +40,11 @@
   <a class="btn btn-danger  btn-block" href="page-list.html">Delete</a>
 </div>
 
-<nav class="navbar navbar-default navbar-fixed-bottom">
-  <div class="container-fluid row">
-    <div class="pull-right navbar-text">
-      <a href="profile.html" class="cl-icon-padding">
-        <span class="glyphicon glyphicon-user"></span>
-      </a>
-    </div>
+<<nav class="navbar fixed-bottom cl-grey-navbar">
+  <div class="container-fluid justify-content-end">
+    <a href="profile.html" class="navbar-brand cl-icon-padding cl-text-blue">
+      <span class="fas fa-user"></span>
+    </a>
   </div>
 </nav>
 </body>

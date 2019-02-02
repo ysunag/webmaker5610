@@ -10,6 +10,7 @@ input.form-control {
   margin-bottom: 2em;
 }
 
+
 a:hover{
   text-decoration: none;
 }
@@ -23,6 +24,14 @@ a:hover{
   background-color: #337ab7;
 }
 
+.cl-grey-navbar{
+  background-color: #f4f6f9;
+}
+
+.cl-nav-padding{
+  padding-bottom: 45px;
+}
+
 .cl-text-white{
   color: #fff;
 }
@@ -31,12 +40,26 @@ a:hover{
   color: #000000;
 }
 
+.cl-text-grey{
+  color: #808389;
+}
+
+.cl-text-blue{
+  color: #337ab7;
+}
+
+
 .cl-text-bold{
   font-weight: bold;
 }
 
 .cl-text-padding {
+  padding-left: 15px;
   padding-right: 15px;
+}
+
+.cl-container-left-padding {
+  padding-left: 40px
 }
 
 .cl-icon-padding {
