@@ -1,0 +1,38 @@
+<nav class="navbar fixed-top cl-grey-navbar">
+  <div class="container-fluid">
+    <div>
+      <a routerLink="user/{{uid}}/website/{{wid}}/page" class="navbar-brand cl-text-black cl-icon-padding">
+        <i class="fas fa-angle-left"></i>
+      </a>
+      <a class="navbar-brand cl-text-black cl-text-bold cl-text-grey" href="#">
+        Edit Page
+      </a>
+    </div>
+    <a (click)="UpdatePage()" routerLink="/user/{{uid}}/website/{{wid}}/page" class="navbar-brand cl-text-black float-right cl-icon-padding">
+      <i class="fas fa-check"></i>
+    </a>
+  </div>
+</nav>
+
+
+<div class="container cl-container-left-padding">
+  <form class="cl-text-padding">
+    <div class="form-group">
+      <label for="page-name">Name</label>
+      <input [(ngModel)]="page.pageName" name="page-name" type="text" class="form-control" id="page-name" placeholder="Page Name">
+    </div>
+    <div class="form-group">
+      <label for="page-title">Title</label>
+      <input [(ngModel)]="page.pageTitle" name="page-title" type="text" class="form-control" id="page-title" placeholder="Page Title">
+    </div>
+    <a class="btn btn-danger  btn-block" (click)="DeletePage()" routerLink="/user/{{uid}}/website/{{wid}}/page">Delete</a>
+  </form>
+</div>
+
+<<nav class="navbar fixed-bottom cl-grey-navbar">
+  <div class="container-fluid justify-content-end">
+    <a routerLink="/user/{{uid}}" class="navbar-brand cl-icon-padding cl-text-blue">
+      <span class="fas fa-user"></span>
+    </a>
+  </div>
+</nav>
