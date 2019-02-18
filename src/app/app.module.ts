@@ -14,10 +14,15 @@ import { WebsiteNewComponent } from './views/website/website-new/website-new.com
 import { WebsiteEditComponent } from './views/website/website-edit/website-edit.component';
 import { WebsiteListComponent } from './views/website/website-list/website-list.component';
 import { WidgetChooseComponent } from './views/widget/widget-choose/widget-choose.component';
-import { WidgetHeadingComponent } from './views/widget/widget-heading/widget-heading.component';
-import { WidgetImageComponent } from './views/widget/widget-image/widget-image.component';
+import { WidgetHeadingComponent } from './views/widget/widget-edit/widget-heading/widget-heading.component';
+import { WidgetImageComponent } from './views/widget/widget-edit/widget-image/widget-image.component';
 import { WidgetListComponent } from './views/widget/widget-list/widget-list.component';
-import { WidgetYoutubeComponent } from './views/widget/widget-youtube/widget-youtube.component';
+import { WidgetYoutubeComponent } from './views/widget/widget-edit/widget-youtube/widget-youtube.component';
+import { WidgetEditComponent } from './views/widget/widget-edit/widget-edit.component';
+import {UserService} from './services/user.service.client';
+import {WebsiteService} from './services/website.service.client';
+import {PageService} from './services/page.service.client';
+import {WidgetService} from './services/widget.service.client';
 
 @NgModule({
   declarations: [
@@ -35,14 +40,15 @@ import { WidgetYoutubeComponent } from './views/widget/widget-youtube/widget-you
     WidgetHeadingComponent,
     WidgetImageComponent,
     WidgetListComponent,
-    WidgetYoutubeComponent
+    WidgetYoutubeComponent,
+    WidgetEditComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule
   ],
-  providers: [],
+  providers: [UserService, WebsiteService, PageService, WidgetService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

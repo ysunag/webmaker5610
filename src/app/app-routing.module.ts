@@ -11,6 +11,7 @@ import {PageNewComponent} from './views/page/page-new/page-new.component';
 import {PageEditComponent} from './views/page/page-edit/page-edit.component';
 import {WidgetListComponent} from './views/widget/widget-list/widget-list.component';
 import {WidgetChooseComponent} from './views/widget/widget-choose/widget-choose.component';
+import {WidgetEditComponent} from './views/widget/widget-edit/widget-edit.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -25,6 +26,8 @@ const routes: Routes = [
   { path: 'user/:uid/website/:wid/page/:pid', component: PageEditComponent },
   { path: 'user/:uid/website/:wid/page/:pid/widget', component: WidgetListComponent },
   { path: 'user/:uid/website/:wid/page/:pid/widget/new', component: WidgetChooseComponent },
+  { path: 'user/:uid/website/:wid/page/:pid/widget/:wgid', component: WidgetEditComponent },
+
 ];
 
 

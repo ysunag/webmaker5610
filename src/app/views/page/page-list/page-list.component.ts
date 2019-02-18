@@ -1,17 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
+import {PageService} from '../../../services/page.service.client';
 
 
 export class Page {
   _id: String;
-  pageName: String;
-  pageTitle: String;
+  name: String;
+  title: String;
+  websiteId: String;
 
 
-  constructor(_id, pageName, pageTitle) {
+  constructor(_id, pageName, pageTitle, websiteId) {
     this._id = _id;
-    this.pageName = pageName;
-    this.pageTitle = pageTitle;
+    this.name = pageName;
+    this.title = pageTitle;
+    this.websiteId = websiteId;
   }
 
 }
@@ -24,18 +27,15 @@ export class Page {
 export class PageListComponent implements OnInit {
   uid: String;
   wid: String;
-  pageList: Array<Page>;
+  pages: Array<Page>;
 
-  constructor(private router: ActivatedRoute) {
-    this.pageList = [new Page(1, 'Blog Post', 'Blog Post'), new Page(2, 'Blogs', 'Blogs'),
-      new Page(3, 'Home', 'Home'), new Page(4, 'About', 'About'),
-      new Page(5, 'Contact Us', 'Contact Us')];
-  }
+  constructor(private router: ActivatedRoute, private pageService: PageService) {}
 
   ngOnInit() {
     this.router.params.subscribe(params => {
       this.uid = params['uid'];
       this.wid = params['wid'];
+      this.pages = this.pageService.findPageByWebsiteId(params['wid']);
       console.log('user id: ' + this.uid);
       console.log('web id: ' + this.wid);
     });

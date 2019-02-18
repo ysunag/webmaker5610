@@ -1,14 +1,14 @@
 <nav class="navbar fixed-top cl-grey-navbar">
   <div class="container-fluid">
     <div>
-      <a routerLink="user/{{uid}}/website/{{wid}}/page" class="navbar-brand cl-text-black cl-icon-padding">
+      <a routerLink="/user/{{uid}}/website/{{wid}}/page" class="navbar-brand cl-text-black cl-icon-padding">
         <i class="fas fa-angle-left"></i>
       </a>
       <a class="navbar-brand cl-text-black cl-text-bold cl-text-grey" href="#">
         New Page
       </a>
     </div>
-    <a (click)="CreatePage()" routerLink="user/{{uid}}/website/{{wid}}/page" class="navbar-brand cl-text-black float-right cl-icon-padding">
+    <a (click)="CreatePage()" routerLink="/user/{{uid}}/website/{{wid}}/page" class="navbar-brand cl-text-black float-right cl-icon-padding">
       <i class="fas fa-check"></i>
     </a>
   </div>
@@ -19,11 +19,11 @@
   <form>
     <div class="form-group cl-text-padding">
       <label for="page-name">Name</label>
-      <input [(ngModel)]="page.pageName" name="page-name" type="text" class="form-control" id="page-name" placeholder="Page Name">
+      <input [(ngModel)]="page.name" name="page-name" type="text" class="form-control" id="page-name" placeholder="Page Name">
     </div>
     <div class="form-group cl-text-padding">
       <label for="page-title">Title</label>
-      <input [(ngModel)]="page.pageTitle" name="page-title" type="text" class="form-control" id="page-title" placeholder="Page Title">
+      <input [(ngModel)]="page.title" name="page-title" type="text" class="form-control" id="page-title" placeholder="Page Title">
     </div>
   </form>
 </div>

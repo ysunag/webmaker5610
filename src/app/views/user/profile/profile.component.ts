@@ -1,6 +1,6 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
-import {NgForm} from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {UserService} from '../../../services/user.service.client';
 
 
 export class User {
@@ -30,24 +30,27 @@ export class User {
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-
-  @ViewChild('f') loginForm: NgForm;
-
   user: User;
+  userId: string;
+  username: String;
 
-  constructor(private router: ActivatedRoute) { this.user = new User('111', 'alice', 'alice', 'alice', 'alice', 'alice@alice'); }
+  constructor(private router: ActivatedRoute, private userService: UserService) {}
 
   UpdateUser() {
-    console.log(this.user.username);
-    console.log(this.user.firstName);
-    console.log(this.user.lastName);
-    // update info in database
+    console.log(this.user['username']);
+    console.log(this.user['firstName']);
+    console.log(this.user['lastName']);
+    console.log(this.user['email']);
+    this.userService.updateUser(this.user['_id'], this.user);
   }
 
   ngOnInit() {
     this.router.params.subscribe(params => {
-      this.user._id = params['uid'];
-      console.log('user id: ' + this.user._id);
+      this.userId = params['uid'];
+      console.log(this.userId);
+      this.user = this.userService.findUserById(this.userId);
+      console.log(this.user);
+      this.username = this.user['username'];
     });
   }
 

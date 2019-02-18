@@ -31,22 +31,29 @@
   <div class="col-sm-4 d-none d-sm-block">
 
     <ul class="list-group cl-list-group-borderless cl-text-blue">
-      <li class="list-group-item cl-list-item-borderless d-flex justify-content-between">
-        <a routerLink="/user/{{uid}}/website/1/page" class="cl-text-blue">Address Book App</a>
-        <a routerLink="/user/{{uid}}/website/1" class="cl-text-blue"><span class="fas fa-cog"></span></a>
+
+
+      <li *ngFor="let item of websites" class="list-group-item cl-list-item-borderless d-flex justify-content-between">
+        <a routerLink="/user/{{uid}}/website/{{item._id}}/page" class="cl-text-blue">{{item.name}}</a>
+        <a routerLink="/user/{{uid}}/website/{{item._id}}" class="cl-text-blue"><span class="fas fa-cog"></span></a>
       </li>
-      <li class="list-group-item cl-list-item-borderless d-flex justify-content-between">
-        <a routerLink="/user/{{uid}}/website/2/page" class="cl-text-blue">Blogger</a>
-        <a routerLink="/user/{{uid}}/website/2" class="cl-text-blue"><span class="fas fa-cog"></span></a>
-      </li>
-      <li class="list-group-item cl-list-item-borderless d-flex justify-content-between">
-        <a routerLink="/user/{{uid}}/website/3/page" class="cl-text-blue">Blogging App</a>
-        <a routerLink="/user/{{uid}}/website/3" class="cl-text-blue"><span class="fas fa-cog"></span></a>
-      </li>
-      <li class="list-group-item cl-list-item-borderless d-flex justify-content-between">
-        <a routerLink="/user/{{uid}}/website/4/page" class="cl-text-blue">Script Testing App</a>
-        <a routerLink="/user/{{uid}}/website/4" class="cl-text-blue"><span class="fas fa-cog"></span></a>
-      </li>
+
+      <!--<li class="list-group-item cl-list-item-borderless d-flex justify-content-between">-->
+        <!--<a routerLink="/user/{{uid}}/website/1/page" class="cl-text-blue">{{websites[0].name}}</a>-->
+        <!--<a routerLink="/user/{{uid}}/website/1" class="cl-text-blue"><span class="fas fa-cog"></span></a>-->
+      <!--</li>-->
+      <!--<li class="list-group-item cl-list-item-borderless d-flex justify-content-between">-->
+        <!--<a routerLink="/user/{{uid}}/website/2/page" class="cl-text-blue">{{websites[1].name}}</a>-->
+        <!--<a routerLink="/user/{{uid}}/website/2" class="cl-text-blue"><span class="fas fa-cog"></span></a>-->
+      <!--</li>-->
+      <!--<li class="list-group-item cl-list-item-borderless d-flex justify-content-between">-->
+        <!--<a routerLink="/user/{{uid}}/website/3/page" class="cl-text-blue">{{websites[2].name}}</a>-->
+        <!--<a routerLink="/user/{{uid}}/website/3" class="cl-text-blue"><span class="fas fa-cog"></span></a>-->
+      <!--</li>-->
+      <!--<li class="list-group-item cl-list-item-borderless d-flex justify-content-between">-->
+        <!--<a routerLink="/user/{{uid}}/website/4/page" class="cl-text-blue">{{websites[3].name}}</a>-->
+        <!--<a routerLink="/user/{{uid}}/website/4" class="cl-text-blue"><span class="fas fa-cog"></span></a>-->
+      <!--</li>-->
     </ul>
 
   </div>
@@ -54,11 +61,11 @@
     <form class="cl-text-padding">
       <div class="form-group">
         <label for="website-name">Website Name</label>
-        <input [(ngModel)]="website.websiteName" name="website-name" type="text" class="form-control" id="website-name" placeholder="Blogger">
+        <input [(ngModel)]="website.name" name="website-name" type="text" class="form-control" id="website-name" placeholder="Blogger">
       </div>
       <div class="form-group">
         <label for="website-description">Website Description</label>
-        <textarea [(ngModel)]="website.websiteDescription" name="website-description" id="website-description" class="form-control" rows="5"
+        <textarea [(ngModel)]="website.description" name="website-description" id="website-description" class="form-control" rows="5"
                   placeholder="Blog is a blog-publishing service...."></textarea>
       </div>
       <a class="btn btn-danger  btn-block" (click)="DeleteWebsite()" routerLink="/user/{{uid}}/website">Delete</a>

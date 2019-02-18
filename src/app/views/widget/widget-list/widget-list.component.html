@@ -16,93 +16,165 @@
 
 
 <div class="container">
-  <div class="row">
-    <h1>London terror attack: Police fired 'unprecedented' number of rounds</h1>
-    <div class="ml-auto">
-      <a routerLink="widget-heading.html">
-        <span class="fas fa-cog cl-text-blue"></span>
-      </a>
-      <a routerLink="#">
-        <span class="fas fa-bars cl-text-blue"></span>
-      </a>
+
+
+  <div *ngFor="let widget of widgets">
+
+    <div [ngSwitch]="widget.widgetType">
+
+      <div *ngSwitchCase="'HEADING'"  class="row">
+        <div [innerHTML]="getHeading(widget)"></div>
+        <div class="ml-auto">
+          <a routerLink="user/{{uid}}/website/{{wid}}/page/{{pid}}/widget/{{widget._id}}">
+            <span class="fas fa-cog cl-text-blue"></span>
+          </a>
+          <a routerLink="#">
+            <span class="fas fa-bars cl-text-blue"></span>
+          </a>
+        </div>
+      </div>
+
+
+
+      <div *ngSwitchCase="'HTML'" class="row">
+        <div [innerHTML]="widget.text"></div>
+        <div class="ml-auto">
+          <a routerLink="#">
+            <span class="fas fa-cog cl-text-blue"></span>
+          </a>
+          <a routerLink="#">
+            <span class="fas fa-bars cl-text-blue"></span>
+          </a>
+        </div>
+      </div>
+
+
+
+      <div *ngSwitchCase="'YOUTUBE'" class="row">
+        <div class="embed-responsive embed-responsive-16by9">
+          <iframe class="embed-responsive-item" [src]="getSafeUrl(widget)" allowfullscreen></iframe>
+        </div>
+        <div class="ml-auto">
+          <a routerLink="user/{{uid}}/website/{{wid}}/page/{{pid}}/widget/{{widget._id}}">
+            <span class="fas fa-cog cl-text-blue cl-widget-list-icons"></span>
+          </a>
+          <a routerLink="#">
+            <span class="fas fa-bars cl-text-blue cl-widget-list-icons"></span>
+          </a>
+        </div>
+      </div>
+
+
+
+      <div *ngSwitchCase="'IMAGE'" class="row">
+          <img class="img-responsive img-rounded cl-widget-images"
+               [src]="getSafeUrl(widget)">
+          <div class="ml-auto">
+            <a routerLink="user/{{uid}}/website/{{wid}}/page/{{pid}}/widget/{{widget._id}}">
+              <span class="fas fa-cog cl-text-blue"></span>
+            </a>
+            <a routerLink="#">
+              <span class="fas fa-bars cl-text-blue"></span>
+            </a>
+          </div>
+        </div>
     </div>
   </div>
 
 
-  <div class="row">
-    <h3>Counterterrorism officers patrol near the scene of the attack on London Bridge.</h3>
-    <div class="ml-auto">
-      <a routerLink="widget-heading.html">
-        <span class="fas fa-cog cl-text-blue"></span>
-      </a>
-      <a routerLink="#">
-        <span class="fas fa-bars cl-text-blue"></span>
-      </a>
-    </div>
-  </div>
 
-  <div class="row">
-    <img class="img-responsive img-rounded cl-widget-images"
-         src="http://i2.cdn.cnn.com/cnnnext/dam/assets/170604130220-41-london-bridge-incident-0604-gallery-exlarge-169.jpg">
-    <div class="ml-auto">
-      <a routerLink="widget-image.html">
-        <span class="fas fa-cog cl-text-blue"></span>
-      </a>
-      <a routerLink="#">
-        <span class="fas fa-bars cl-text-blue"></span>
-      </a>
-    </div>
-  </div>
 
-  <div class="row">
-    <p>Armed officers responding to the London Bridge terror attack fired an "unprecedented" number of rounds at the three attackers because they were wearing what appeared to be suicide belts, police said.</p>
-    <div class="ml-auto">
-      <a routerLink="#">
-        <span class="fas fa-cog cl-text-blue"></span>
-      </a>
-      <a routerLink="#">
-        <span class="fas fa-bars cl-text-blue"></span>
-      </a>
-    </div>
-  </div>
 
-  <div class="row">
-    <h3>Report: Incident at London Bridge</h3>
-    <div class="ml-auto">
-      <a routerLink="widget-heading.html">
-        <span class="fas fa-cog cl-text-blue"></span>
-      </a>
-      <a routerLink="#">
-        <span class="fas fa-bars cl-text-blue"></span>
-      </a>
-    </div>
-  </div>
 
-  <div class="row">
-    <div class="embed-responsive embed-responsive-16by9">
-      <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/APexI9Zb6iE" allowfullscreen></iframe>
-    </div>
-    <div class="ml-auto">
-      <a routerLink="widget-youtube.html">
-        <span class="fas fa-cog cl-text-blue cl-widget-list-icons"></span>
-      </a>
-      <a routerLink="#">
-        <span class="fas fa-bars cl-text-blue cl-widget-list-icons"></span>
-      </a>
-    </div>
-  </div>
 
-  <div class="row">
-    <p>There is a report of an incident has occurred at London Bridge. From CNN London.</p>
-    <div class="ml-auto">
-      <a routerLink="#">
-        <span class="fas fa-cog cl-text-blue"></span>
-      </a>
-      <a routerLink="#">
-        <span class="fas fa-bars cl-text-blue"></span>
-      </a>
-    </div>
-  </div>
+
+  <!--<div class="row">-->
+    <!--<h1>London terror attack: Police fired 'unprecedented' number of rounds</h1>-->
+    <!--<div class="ml-auto">-->
+      <!--<a routerLink="widget-heading.html">-->
+        <!--<span class="fas fa-cog cl-text-blue"></span>-->
+      <!--</a>-->
+      <!--<a routerLink="#">-->
+        <!--<span class="fas fa-bars cl-text-blue"></span>-->
+      <!--</a>-->
+    <!--</div>-->
+  <!--</div>-->
+
+
+  <!--<div class="row">-->
+    <!--<h3>Counterterrorism officers patrol near the scene of the attack on London Bridge.</h3>-->
+    <!--<div class="ml-auto">-->
+      <!--<a routerLink="widget-heading.html">-->
+        <!--<span class="fas fa-cog cl-text-blue"></span>-->
+      <!--</a>-->
+      <!--<a routerLink="#">-->
+        <!--<span class="fas fa-bars cl-text-blue"></span>-->
+      <!--</a>-->
+    <!--</div>-->
+  <!--</div>-->
+
+  <!--<div class="row">-->
+    <!--<img class="img-responsive img-rounded cl-widget-images"-->
+         <!--src="http://i2.cdn.cnn.com/cnnnext/dam/assets/170604130220-41-london-bridge-incident-0604-gallery-exlarge-169.jpg">-->
+    <!--<div class="ml-auto">-->
+      <!--<a routerLink="widget-image.html">-->
+        <!--<span class="fas fa-cog cl-text-blue"></span>-->
+      <!--</a>-->
+      <!--<a routerLink="#">-->
+        <!--<span class="fas fa-bars cl-text-blue"></span>-->
+      <!--</a>-->
+    <!--</div>-->
+  <!--</div>-->
+
+  <!--<div class="row">-->
+    <!--<p>Armed officers responding to the London Bridge terror attack fired an "unprecedented" number of rounds at the three attackers because they were wearing what appeared to be suicide belts, police said.</p>-->
+    <!--<div class="ml-auto">-->
+      <!--<a routerLink="#">-->
+        <!--<span class="fas fa-cog cl-text-blue"></span>-->
+      <!--</a>-->
+      <!--<a routerLink="#">-->
+        <!--<span class="fas fa-bars cl-text-blue"></span>-->
+      <!--</a>-->
+    <!--</div>-->
+  <!--</div>-->
+
+  <!--<div class="row">-->
+    <!--<h3>Report: Incident at London Bridge</h3>-->
+    <!--<div class="ml-auto">-->
+      <!--<a routerLink="widget-heading.html">-->
+        <!--<span class="fas fa-cog cl-text-blue"></span>-->
+      <!--</a>-->
+      <!--<a routerLink="#">-->
+        <!--<span class="fas fa-bars cl-text-blue"></span>-->
+      <!--</a>-->
+    <!--</div>-->
+  <!--</div>-->
+
+  <!--<div class="row">-->
+    <!--<div class="embed-responsive embed-responsive-16by9">-->
+      <!--<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/APexI9Zb6iE" allowfullscreen></iframe>-->
+    <!--</div>-->
+    <!--<div class="ml-auto">-->
+      <!--<a routerLink="widget-youtube.html">-->
+        <!--<span class="fas fa-cog cl-text-blue cl-widget-list-icons"></span>-->
+      <!--</a>-->
+      <!--<a routerLink="#">-->
+        <!--<span class="fas fa-bars cl-text-blue cl-widget-list-icons"></span>-->
+      <!--</a>-->
+    <!--</div>-->
+  <!--</div>-->
+
+  <!--<div class="row">-->
+    <!--<p>There is a report of an incident has occurred at London Bridge. From CNN London.</p>-->
+    <!--<div class="ml-auto">-->
+      <!--<a routerLink="#">-->
+        <!--<span class="fas fa-cog cl-text-blue"></span>-->
+      <!--</a>-->
+      <!--<a routerLink="#">-->
+        <!--<span class="fas fa-bars cl-text-blue"></span>-->
+      <!--</a>-->
+    <!--</div>-->
+  <!--</div>-->
 </div>
 
 <nav class="navbar fixed-bottom cl-grey-navbar">

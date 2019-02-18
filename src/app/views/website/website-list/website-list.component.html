@@ -16,22 +16,26 @@
 
 <div class="container">
   <ul class="list-group cl-list-group-borderless cl-text-blue">
-    <li class="list-group-item cl-list-item-borderless d-flex justify-content-between">
-      <a routerLink="/user/{{uid}}/website/1/page" class="cl-text-blue">Address Book App</a>
-      <a routerLink="/user/{{uid}}/website/1" class="cl-text-blue"><span class="fas fa-cog"></span></a>
+    <li *ngFor="let item of websites" class="list-group-item cl-list-item-borderless d-flex justify-content-between">
+      <a routerLink="/user/{{uid}}/website/{{item._id}}/page" class="cl-text-blue">{{item.name}}</a>
+      <a routerLink="/user/{{uid}}/website/{{item._id}}" class="cl-text-blue"><span class="fas fa-cog"></span></a>
     </li>
-    <li class="list-group-item cl-list-item-borderless d-flex justify-content-between">
-      <a routerLink="/user/{{uid}}/website/2/page" class="cl-text-blue">Blogger</a>
-      <a routerLink="/user/{{uid}}/website/2" class="cl-text-blue"><span class="fas fa-cog"></span></a>
-    </li>
-    <li class="list-group-item cl-list-item-borderless d-flex justify-content-between">
-      <a routerLink="/user/{{uid}}/website/3/page" class="cl-text-blue">Blogging App</a>
-      <a routerLink="/user/{{uid}}/website/3" class="cl-text-blue"><span class="fas fa-cog"></span></a>
-    </li>
-    <li class="list-group-item cl-list-item-borderless d-flex justify-content-between">
-      <a routerLink="/user/{{uid}}/website/4/page" class="cl-text-blue">Script Testing App</a>
-      <a routerLink="/user/{{uid}}/website/4" class="cl-text-blue"><span class="fas fa-cog"></span></a>
-    </li>
+    <!--<li class="list-group-item cl-list-item-borderless d-flex justify-content-between">-->
+      <!--<a routerLink="/user/{{uid}}/website/1/page" class="cl-text-blue">Address Book App</a>-->
+      <!--<a routerLink="/user/{{uid}}/website/1" class="cl-text-blue"><span class="fas fa-cog"></span></a>-->
+    <!--</li>-->
+    <!--<li class="list-group-item cl-list-item-borderless d-flex justify-content-between">-->
+      <!--<a routerLink="/user/{{uid}}/website/2/page" class="cl-text-blue">Blogger</a>-->
+      <!--<a routerLink="/user/{{uid}}/website/2" class="cl-text-blue"><span class="fas fa-cog"></span></a>-->
+    <!--</li>-->
+    <!--<li class="list-group-item cl-list-item-borderless d-flex justify-content-between">-->
+      <!--<a routerLink="/user/{{uid}}/website/3/page" class="cl-text-blue">Blogging App</a>-->
+      <!--<a routerLink="/user/{{uid}}/website/3" class="cl-text-blue"><span class="fas fa-cog"></span></a>-->
+    <!--</li>-->
+    <!--<li class="list-group-item cl-list-item-borderless d-flex justify-content-between">-->
+      <!--<a routerLink="/user/{{uid}}/website/4/page" class="cl-text-blue">Script Testing App</a>-->
+      <!--<a routerLink="/user/{{uid}}/website/4" class="cl-text-blue"><span class="fas fa-cog"></span></a>-->
+    <!--</li>-->
   </ul>
 </div>
 

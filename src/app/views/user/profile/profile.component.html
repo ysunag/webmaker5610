@@ -1,6 +1,6 @@
 <nav class="navbar fixed-top cl-blue-navbar">
   <div class="container-fluid">
-    <a class="cl-text-white cl-text-bold navbar-brand" routerLink="user/{{user._id}}">
+    <a class="cl-text-white cl-text-bold navbar-brand" routerLink="/user/{{userId}}">
       Profile
     </a>
     <a (click)="UpdateUser()" class="navbar-brand cl-text-white">
@@ -30,7 +30,7 @@
       <input [(ngModel)]="user.lastName" name="lastName" type="text" class="form-control" id="last-name" placeholder="Wonderland">
     </div>
   </form>
-  <a class="btn btn-primary btn-block cl-blue-navbar" routerLink="/user/{{user._id}}/website">Websites</a>
+  <a class="btn btn-primary btn-block cl-blue-navbar" routerLink="/user/{{userId}}/website">Websites</a>
   <a class="btn btn-danger  btn-block" routerLink="/login">Logout</a>
 </div>
 

@@ -1,7 +1,7 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {NgForm} from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
 import {Page} from '../page-list/page-list.component';
 import {ActivatedRoute} from '@angular/router';
+import {PageService} from '../../../services/page.service.client';
 
 @Component({
   selector: 'app-page-new',
@@ -9,18 +9,18 @@ import {ActivatedRoute} from '@angular/router';
   styleUrls: ['./page-new.component.css']
 })
 export class PageNewComponent implements OnInit {
-  @ViewChild('f') loginForm: NgForm;
   uid: String;
   wid: String;
   page: Page;
 
-  constructor(private router: ActivatedRoute) {
-    this.page = new Page('6', '', '');
+  constructor(private router: ActivatedRoute, private pageService: PageService) {
+    this.page = new Page('', '',  '', '');
   }
 
   CreatePage() {
-    console.log(this.page.pageName);
-    console.log(this.page.pageTitle);
+    console.log(this.page.name);
+    console.log(this.page.title);
+    this.pageService.createPage(this.wid, this.page);
   }
 
   ngOnInit() {

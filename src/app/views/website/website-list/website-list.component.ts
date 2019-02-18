@@ -1,16 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
+import {WebsiteService} from '../../../services/website.service.client';
+
 
 export class Website {
   _id: String;
-  websiteName: String;
-  websiteDescription: String;
+  developerId: String;
+  name: String;
+  description: String;
 
 
-  constructor(_id, websiteName, websiteDescription) {
+  constructor(_id, websiteName, websiteDescription, developerId) {
     this._id = _id;
-    this.websiteName = websiteName;
-    this.websiteDescription = websiteDescription;
+    this.name = websiteName;
+    this.description = websiteDescription;
+    this.developerId = developerId;
   }
 
 }
@@ -22,16 +26,15 @@ export class Website {
 })
 export class WebsiteListComponent implements OnInit {
   uid: String;
-  websiteList: Array<Website>;
+  websites: Array<Website>;
 
-  constructor(private router: ActivatedRoute) {
-    this.websiteList = [new Website(1, 'Address Book App', 'Address Book App'), new Website(2, 'Blogger', 'Blogger'),
-      new Website(3, 'Blogging App', 'Blogging App'), new Website(4, 'Script Testing App', 'Script Testing App')];
+  constructor(private router: ActivatedRoute, private websiteService: WebsiteService) {
   }
 
   ngOnInit() {
     this.router.params.subscribe(params => {
       this.uid = params['uid'];
+      this.websites = this.websiteService.findWebsitesByUser(params['uid']);
       console.log('user id: ' + this.uid);
     });
   }

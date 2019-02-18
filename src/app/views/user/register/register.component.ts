@@ -1,6 +1,8 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {Router} from '@angular/router';
+import {UserService} from '../../../services/user.service.client';
+import {User} from '../profile/profile.component';
 
 @Component({
   selector: 'app-register',
@@ -9,29 +11,36 @@ import {Router} from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
 
-  @ViewChild('f') loginForm: NgForm;
+  @ViewChild('f')
+  registerForm: NgForm;
 
   username: String;
   password: String;
   verifyPassword: String;
+  user: User;
 
   errorFlag: boolean;
-  errorMsg = 'Invalid username or password !';
+  errorMsg = 'Invalid username or password!';
 
-  constructor(private router: Router) { this.errorFlag = false; }
+  constructor(private router: Router, private userService: UserService) {
+    this.errorFlag = false;
+    this.username = '';
+    this.password = '';
+    this.verifyPassword = '';
+    this.user = new User('', '', '', '', '', '');
+  }
 
   register() {
-
-    this.username = this.loginForm.value.username;
-    this.password = this.loginForm.value.password;
-    this.verifyPassword = this.loginForm.value.verifyPassword;
+    this.username = this.registerForm.value.username;
+    this.password = this.registerForm.value.password;
+    this.verifyPassword = this.registerForm.value.verifyPassword;
     console.log(this.username);
     console.log(this.password);
     console.log(this.verifyPassword);
-
-
-    // add to database
-    this.router.navigate(['/user', '111']);
+    this.user.username = this.username;
+    this.user.password = this.password;
+    this.user = this.userService.createUser(this.user);
+    this.router.navigate(['/user', this.user._id]);
   }
 
   ngOnInit() {
