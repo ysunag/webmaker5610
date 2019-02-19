@@ -3,7 +3,7 @@ import {ActivatedRoute} from '@angular/router';
 import {WidgetService} from '../../../services/widget.service.client';
 import { DomSanitizer } from '@angular/platform-browser';
 
-export interface Widget {
+export class Widget {
   name: String;
   _id: String;
   widgetType: String;
@@ -13,9 +13,13 @@ export interface Widget {
   text?: String;
   url?: String;
   file?: File;
+  constructor(name, _id, widgetType, pageId) {
+    this.name = name;
+    this._id = _id;
+    this.widgetType = widgetType;
+    this.pageId = pageId;
+  }
 }
-
-
 
 
 
