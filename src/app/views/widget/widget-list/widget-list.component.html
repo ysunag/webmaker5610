@@ -52,7 +52,7 @@
 
       <div *ngSwitchCase="'YOUTUBE'" class="row">
         <div class="embed-responsive embed-responsive-16by9">
-          <iframe class="embed-responsive-item" [src]="getSafeUrl(widget)" allowfullscreen></iframe>
+          <iframe class="embed-responsive-item" [src]="getSafeUrl(widget)" [ngStyle]="{'width': widget.width}" allowfullscreen></iframe>
         </div>
         <div class="ml-auto">
           <a routerLink="/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget/{{widget._id}}">
@@ -67,7 +67,7 @@
 
 
       <div *ngSwitchCase="'IMAGE'" class="row">
-          <img class="img-responsive img-rounded cl-widget-images"
+          <img class="img-responsive img-rounded cl-widget-images" [ngStyle]="{'width': widget.width}"
                [src]="getSafeUrl(widget)">
           <div class="ml-auto">
             <a routerLink="/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget/{{widget._id}}">
