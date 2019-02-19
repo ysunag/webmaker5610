@@ -15,7 +15,7 @@
 <div class="container">
   <ul class="list-group cl-list-group-borderless">
     <li class="list-group-item cl-list-item-borderless">
-      <a routerLink="/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget/:wgid" class="cl-text-blue">Header</a>
+      <a (click)="updateWidgetType('HEADING')" routerLink="/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget/{{widget._id}}" class="cl-text-blue">Header</a>
     </li>
     <li class="list-group-item cl-list-item-borderless">
       <a routerLink="#" class="cl-text-blue">Label</a>
@@ -33,10 +33,10 @@
       <a routerLink="#" class="cl-text-blue">Button</a>
     </li>
     <li class="list-group-item cl-list-item-borderless">
-      <a routerLink="/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget/:wgid" class="cl-text-blue">Image</a>
+      <a (click)="updateWidgetType('IMAGE')" routerLink="/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget/{{widget._id}}" class="cl-text-blue">Image</a>
     </li>
     <li class="list-group-item cl-list-item-borderless">
-      <a routerLink="/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget/:wgid" class="cl-text-blue">YouTube</a>
+      <a (click)="updateWidgetType('YOUTUBE')" routerLink="/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget/{{widget._id}}" class="cl-text-blue">YouTube</a>
     </li>
     <li class="list-group-item cl-list-item-borderless">
       <a routerLink="#" class="cl-text-blue">Data Table</a>

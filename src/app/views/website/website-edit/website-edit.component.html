@@ -28,35 +28,16 @@
 </nav>
 
 <div class="row container-fluid">
+
   <div class="col-sm-4 d-none d-sm-block">
-
     <ul class="list-group cl-list-group-borderless cl-text-blue">
-
-
       <li *ngFor="let item of websites" class="list-group-item cl-list-item-borderless d-flex justify-content-between">
         <a routerLink="/user/{{uid}}/website/{{item._id}}/page" class="cl-text-blue">{{item.name}}</a>
         <a routerLink="/user/{{uid}}/website/{{item._id}}" class="cl-text-blue"><span class="fas fa-cog"></span></a>
       </li>
-
-      <!--<li class="list-group-item cl-list-item-borderless d-flex justify-content-between">-->
-        <!--<a routerLink="/user/{{uid}}/website/1/page" class="cl-text-blue">{{websites[0].name}}</a>-->
-        <!--<a routerLink="/user/{{uid}}/website/1" class="cl-text-blue"><span class="fas fa-cog"></span></a>-->
-      <!--</li>-->
-      <!--<li class="list-group-item cl-list-item-borderless d-flex justify-content-between">-->
-        <!--<a routerLink="/user/{{uid}}/website/2/page" class="cl-text-blue">{{websites[1].name}}</a>-->
-        <!--<a routerLink="/user/{{uid}}/website/2" class="cl-text-blue"><span class="fas fa-cog"></span></a>-->
-      <!--</li>-->
-      <!--<li class="list-group-item cl-list-item-borderless d-flex justify-content-between">-->
-        <!--<a routerLink="/user/{{uid}}/website/3/page" class="cl-text-blue">{{websites[2].name}}</a>-->
-        <!--<a routerLink="/user/{{uid}}/website/3" class="cl-text-blue"><span class="fas fa-cog"></span></a>-->
-      <!--</li>-->
-      <!--<li class="list-group-item cl-list-item-borderless d-flex justify-content-between">-->
-        <!--<a routerLink="/user/{{uid}}/website/4/page" class="cl-text-blue">{{websites[3].name}}</a>-->
-        <!--<a routerLink="/user/{{uid}}/website/4" class="cl-text-blue"><span class="fas fa-cog"></span></a>-->
-      <!--</li>-->
     </ul>
-
   </div>
+
   <div class="col-sm-8">
     <form class="cl-text-padding">
       <div class="form-group">

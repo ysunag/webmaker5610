@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Page} from '../../page/page-list/page-list.component';
 import {ActivatedRoute} from '@angular/router';
+import {WidgetService} from '../../../services/widget.service.client';
+import {Widget} from '../widget-list/widget-list.component';
 
 @Component({
   selector: 'app-widget-choose',
@@ -12,8 +14,11 @@ export class WidgetChooseComponent implements OnInit {
   uid: String;
   wid: String;
   pid: Page;
+  widget: Widget;
 
-  constructor(private router: ActivatedRoute) { }
+  constructor(private router: ActivatedRoute, private widgetService: WidgetService) {
+    this.widget = new Widget('', 0, '', '');
+  }
 
   ngOnInit() {
     this.router.params.subscribe(params => {
@@ -23,7 +28,13 @@ export class WidgetChooseComponent implements OnInit {
       console.log('user id: ' + this.uid);
       console.log('web id: ' + this.wid);
       console.log('page id: ' + this.pid);
+      this.widget = this.widgetService.createWidget(this.pid, this.widget);
     });
+  }
+
+  updateWidgetType(widgetType) {
+    this.widget.widgetType = widgetType;
+    this.widgetService.updateWidget(this.widget._id, this.widget);
   }
 
 }
