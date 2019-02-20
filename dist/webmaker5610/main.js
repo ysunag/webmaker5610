@@ -1292,7 +1292,6 @@ var WebsiteNewComponent = /** @class */ (function () {
             _this.uid = params['uid'];
             _this.websites = _this.websiteService.findWebsitesByUser(params['uid']);
             console.log('user id: ' + _this.uid);
-            console.log('websites:' + _this.websites[0].name);
         });
     };
     WebsiteNewComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([

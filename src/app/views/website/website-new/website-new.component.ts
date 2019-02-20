@@ -1,5 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {NgForm} from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
 import {Website} from '../website-list/website-list.component';
 import {ActivatedRoute} from '@angular/router';
 import {WebsiteService} from '../../../services/website.service.client';
@@ -10,7 +9,6 @@ import {WebsiteService} from '../../../services/website.service.client';
   styleUrls: ['./website-new.component.css']
 })
 export class WebsiteNewComponent implements OnInit {
-  // @ViewChild('f') loginForm: NgForm;
   uid: String;
   website: Website = new Website('', '', '', '');
   websites: Array<Website>;
@@ -29,7 +27,6 @@ export class WebsiteNewComponent implements OnInit {
       this.uid = params['uid'];
       this.websites = this.websiteService.findWebsitesByUser(params['uid']);
       console.log('user id: ' + this.uid);
-      console.log('websites:' + this.websites[0].name);
     });
   }
 
