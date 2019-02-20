@@ -17,7 +17,7 @@ export class WidgetChooseComponent implements OnInit {
   widget: Widget;
 
   constructor(private router: ActivatedRoute, private widgetService: WidgetService) {
-    this.widget = new Widget('', 0, '', '');
+    this.widget = new Widget('', '', '', '');
   }
 
   ngOnInit() {
@@ -28,6 +28,7 @@ export class WidgetChooseComponent implements OnInit {
       console.log('user id: ' + this.uid);
       console.log('web id: ' + this.wid);
       console.log('page id: ' + this.pid);
+      this.widget.size = 1;
       this.widget = this.widgetService.createWidget(this.pid, this.widget);
     });
   }

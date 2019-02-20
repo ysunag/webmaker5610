@@ -1356,7 +1356,7 @@ var WidgetChooseComponent = /** @class */ (function () {
     function WidgetChooseComponent(router, widgetService) {
         this.router = router;
         this.widgetService = widgetService;
-        this.widget = new _widget_list_widget_list_component__WEBPACK_IMPORTED_MODULE_4__["Widget"]('', 0, '', '');
+        this.widget = new _widget_list_widget_list_component__WEBPACK_IMPORTED_MODULE_4__["Widget"]('', '', '', '');
     }
     WidgetChooseComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -1367,6 +1367,7 @@ var WidgetChooseComponent = /** @class */ (function () {
             console.log('user id: ' + _this.uid);
             console.log('web id: ' + _this.wid);
             console.log('page id: ' + _this.pid);
+            _this.widget.size = 1;
             _this.widget = _this.widgetService.createWidget(_this.pid, _this.widget);
         });
     };
