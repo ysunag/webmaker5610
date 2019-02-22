@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {Website} from '../website-list/website-list.component';
 import {ActivatedRoute} from '@angular/router';
 import {WebsiteService} from '../../../services/website.service.client';
+import {Website} from '../../../model/website.model.client';
 
 @Component({
   selector: 'app-website-new',

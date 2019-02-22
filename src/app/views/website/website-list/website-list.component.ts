@@ -1,23 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {WebsiteService} from '../../../services/website.service.client';
+import {Website} from '../../../model/website.model.client';
 
 
-export class Website {
-  _id: String;
-  developerId: String;
-  name: String;
-  description: String;
 
-
-  constructor(_id, websiteName, websiteDescription, developerId) {
-    this._id = _id;
-    this.name = websiteName;
-    this.description = websiteDescription;
-    this.developerId = developerId;
-  }
-
-}
 
 @Component({
   selector: 'app-website-list',

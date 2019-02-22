@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {Page} from '../../page/page-list/page-list.component';
 import {ActivatedRoute} from '@angular/router';
 import {WidgetService} from '../../../services/widget.service.client';
-import {Widget} from '../widget-list/widget-list.component';
+import {Page} from '../../../model/page.model.client';
+import {Widget} from '../../../model/widget.model.client';
+
 
 @Component({
   selector: 'app-widget-choose',

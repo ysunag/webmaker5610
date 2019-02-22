@@ -2,7 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {Router} from '@angular/router';
 import {UserService} from '../../../services/user.service.client';
-import {User} from '../profile/profile.component';
+import {User} from '../../../model/user.model.client';
 
 @Component({
   selector: 'app-register',

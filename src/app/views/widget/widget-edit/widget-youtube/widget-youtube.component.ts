@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {Widget} from '../../widget-list/widget-list.component';
 import {ActivatedRoute} from '@angular/router';
 import {WidgetService} from '../../../../services/widget.service.client';
+import {Widget} from '../../../../model/widget.model.client';
 
 @Component({
   selector: 'app-widget-youtube',

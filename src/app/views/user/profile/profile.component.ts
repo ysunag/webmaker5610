@@ -1,27 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {UserService} from '../../../services/user.service.client';
+import {User} from '../../../model/user.model.client';
 
 
-export class User {
-  _id: String;
-  username: String;
-  password: String;
-
-  firstName: String;
-  lastName: String;
-  email: String;
-
-  constructor(_id, username, password, firstName, lastName, email) {
-    this._id = _id;
-    this.username = username;
-    this.password = password;
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.email = email;
-  }
-
-}
 
 
 @Component({
@@ -29,6 +11,7 @@ export class User {
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
+
 export class ProfileComponent implements OnInit {
   user: User;
   userId: string;

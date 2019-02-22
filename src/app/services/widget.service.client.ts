@@ -1,4 +1,5 @@
 import {Injectable} from '@angular/core';
+import {Widget} from '../model/widget.model.client';
 
 
 @Injectable()
@@ -6,7 +7,7 @@ export class WidgetService {
 
   constructor() {}
 
-  widgets = [
+  widgets: Widget[] = [
     { _id: '123', widgetType: 'HEADING', pageId: '321', size: 2, text: 'GIZMODO', name: 'No.1'},
     { _id: '234', widgetType: 'HEADING', pageId: '321', size: 4, text: 'Lorem ipsum', name: 'No.2'},
     { _id: '345', widgetType: 'IMAGE', pageId: '321', width: '100%',

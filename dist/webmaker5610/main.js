@@ -113,7 +113,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!--The content below is only a placeholder and can be replaced.-->\n<!--<div style=\"text-align:center\">-->\n  <!--<h1>-->\n    <!--Welcome to my webmaker!-->\n  <!--</h1>-->\n<!--</div>-->\n\n<a routerLink=\"/login\">Login</a>\n<a routerLink=\"/register\">Register</a>\n<a routerLink=\"/profile\">Profile</a>\n<router-outlet></router-outlet>\n"
+module.exports = "<!--The content below is only a placeholder and can be replaced.-->\n<!--<div style=\"text-align:center\">-->\n  <!--<h1>-->\n    <!--Welcome to my webmaker!-->\n  <!--</h1>-->\n<!--</div>-->\n\n<!--<a routerLink=\"/login\">Login</a>-->\n<!--<a routerLink=\"/register\">Register</a>-->\n<!--<a routerLink=\"/profile\">Profile</a>-->\n<router-outlet></router-outlet>\n"
 
 /***/ }),
 
@@ -242,6 +242,104 @@ var AppModule = /** @class */ (function () {
         })
     ], AppModule);
     return AppModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/model/page.model.client.ts":
+/*!********************************************!*\
+  !*** ./src/app/model/page.model.client.ts ***!
+  \********************************************/
+/*! exports provided: Page */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Page", function() { return Page; });
+var Page = /** @class */ (function () {
+    function Page(_id, pageName, pageTitle, websiteId) {
+        this._id = _id;
+        this.name = pageName;
+        this.title = pageTitle;
+        this.websiteId = websiteId;
+    }
+    return Page;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/model/user.model.client.ts":
+/*!********************************************!*\
+  !*** ./src/app/model/user.model.client.ts ***!
+  \********************************************/
+/*! exports provided: User */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "User", function() { return User; });
+var User = /** @class */ (function () {
+    function User(_id, username, password, firstName, lastName, email) {
+        this._id = _id;
+        this.username = username;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+    }
+    return User;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/model/website.model.client.ts":
+/*!***********************************************!*\
+  !*** ./src/app/model/website.model.client.ts ***!
+  \***********************************************/
+/*! exports provided: Website */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Website", function() { return Website; });
+var Website = /** @class */ (function () {
+    function Website(_id, websiteName, websiteDescription, developerId) {
+        this._id = _id;
+        this.name = websiteName;
+        this.description = websiteDescription;
+        this.developerId = developerId;
+    }
+    return Website;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/model/widget.model.client.ts":
+/*!**********************************************!*\
+  !*** ./src/app/model/widget.model.client.ts ***!
+  \**********************************************/
+/*! exports provided: Widget */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Widget", function() { return Widget; });
+var Widget = /** @class */ (function () {
+    function Widget(name, _id, widgetType, pageId) {
+        this.name = name;
+        this._id = _id;
+        this.widgetType = widgetType;
+        this.pageId = pageId;
+    }
+    return Widget;
 }());
 
 
@@ -684,12 +782,11 @@ module.exports = "<nav class=\"navbar fixed-top cl-grey-navbar\">\n  <div class=
 /*!*************************************************************!*\
   !*** ./src/app/views/page/page-list/page-list.component.ts ***!
   \*************************************************************/
-/*! exports provided: Page, PageListComponent */
+/*! exports provided: PageListComponent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Page", function() { return Page; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PageListComponent", function() { return PageListComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
@@ -698,16 +795,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-var Page = /** @class */ (function () {
-    function Page(_id, pageName, pageTitle, websiteId) {
-        this._id = _id;
-        this.name = pageName;
-        this.title = pageTitle;
-        this.websiteId = websiteId;
-    }
-    return Page;
-}());
 
 var PageListComponent = /** @class */ (function () {
     function PageListComponent(router, pageService) {
@@ -773,9 +860,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PageNewComponent", function() { return PageNewComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _page_list_page_list_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../page-list/page-list.component */ "./src/app/views/page/page-list/page-list.component.ts");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _services_page_service_client__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../services/page.service.client */ "./src/app/services/page.service.client.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _services_page_service_client__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../services/page.service.client */ "./src/app/services/page.service.client.ts");
+/* harmony import */ var _model_page_model_client__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../model/page.model.client */ "./src/app/model/page.model.client.ts");
 
 
 
@@ -785,7 +872,7 @@ var PageNewComponent = /** @class */ (function () {
     function PageNewComponent(router, pageService) {
         this.router = router;
         this.pageService = pageService;
-        this.page = new _page_list_page_list_component__WEBPACK_IMPORTED_MODULE_2__["Page"]('', '', '', '');
+        this.page = new _model_page_model_client__WEBPACK_IMPORTED_MODULE_4__["Page"]('', '', '', '');
     }
     PageNewComponent.prototype.CreatePage = function () {
         console.log(this.page.name);
@@ -807,7 +894,7 @@ var PageNewComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./page-new.component.html */ "./src/app/views/page/page-new/page-new.component.html"),
             styles: [__webpack_require__(/*! ./page-new.component.css */ "./src/app/views/page/page-new/page-new.component.css")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"], _services_page_service_client__WEBPACK_IMPORTED_MODULE_4__["PageService"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"], _services_page_service_client__WEBPACK_IMPORTED_MODULE_3__["PageService"]])
     ], PageNewComponent);
     return PageNewComponent;
 }());
@@ -923,12 +1010,11 @@ module.exports = "<nav class=\"navbar fixed-top cl-blue-navbar\">\n  <div class=
 /*!*********************************************************!*\
   !*** ./src/app/views/user/profile/profile.component.ts ***!
   \*********************************************************/
-/*! exports provided: User, ProfileComponent */
+/*! exports provided: ProfileComponent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "User", function() { return User; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProfileComponent", function() { return ProfileComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
@@ -937,18 +1023,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-var User = /** @class */ (function () {
-    function User(_id, username, password, firstName, lastName, email) {
-        this._id = _id;
-        this.username = username;
-        this.password = password;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-    }
-    return User;
-}());
 
 var ProfileComponent = /** @class */ (function () {
     function ProfileComponent(router, userService) {
@@ -1024,7 +1098,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _services_user_service_client__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../services/user.service.client */ "./src/app/services/user.service.client.ts");
-/* harmony import */ var _profile_profile_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../profile/profile.component */ "./src/app/views/user/profile/profile.component.ts");
+/* harmony import */ var _model_user_model_client__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../model/user.model.client */ "./src/app/model/user.model.client.ts");
 
 
 
@@ -1040,7 +1114,7 @@ var RegisterComponent = /** @class */ (function () {
         this.username = '';
         this.password = '';
         this.verifyPassword = '';
-        this.user = new _profile_profile_component__WEBPACK_IMPORTED_MODULE_5__["User"]('', '', '', '', '', '');
+        this.user = new _model_user_model_client__WEBPACK_IMPORTED_MODULE_5__["User"]('', '', '', '', '', '');
     }
     RegisterComponent.prototype.register = function () {
         this.username = this.registerForm.value.username;
@@ -1181,12 +1255,11 @@ module.exports = "<nav class=\"navbar fixed-top cl-blue-navbar\">\n  <div class=
 /*!**********************************************************************!*\
   !*** ./src/app/views/website/website-list/website-list.component.ts ***!
   \**********************************************************************/
-/*! exports provided: Website, WebsiteListComponent */
+/*! exports provided: WebsiteListComponent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Website", function() { return Website; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "WebsiteListComponent", function() { return WebsiteListComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
@@ -1195,16 +1268,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-var Website = /** @class */ (function () {
-    function Website(_id, websiteName, websiteDescription, developerId) {
-        this._id = _id;
-        this.name = websiteName;
-        this.description = websiteDescription;
-        this.developerId = developerId;
-    }
-    return Website;
-}());
 
 var WebsiteListComponent = /** @class */ (function () {
     function WebsiteListComponent(router, websiteService) {
@@ -1268,9 +1331,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "WebsiteNewComponent", function() { return WebsiteNewComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _website_list_website_list_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../website-list/website-list.component */ "./src/app/views/website/website-list/website-list.component.ts");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _services_website_service_client__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../services/website.service.client */ "./src/app/services/website.service.client.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _services_website_service_client__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../services/website.service.client */ "./src/app/services/website.service.client.ts");
+/* harmony import */ var _model_website_model_client__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../model/website.model.client */ "./src/app/model/website.model.client.ts");
 
 
 
@@ -1280,7 +1343,7 @@ var WebsiteNewComponent = /** @class */ (function () {
     function WebsiteNewComponent(router, websiteService) {
         this.router = router;
         this.websiteService = websiteService;
-        this.website = new _website_list_website_list_component__WEBPACK_IMPORTED_MODULE_2__["Website"]('', '', '', '');
+        this.website = new _model_website_model_client__WEBPACK_IMPORTED_MODULE_4__["Website"]('', '', '', '');
     }
     WebsiteNewComponent.prototype.CreateWebsite = function () {
         console.log(this.website.name);
@@ -1301,7 +1364,7 @@ var WebsiteNewComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./website-new.component.html */ "./src/app/views/website/website-new/website-new.component.html"),
             styles: [__webpack_require__(/*! ./website-new.component.css */ "./src/app/views/website/website-new/website-new.component.css")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"], _services_website_service_client__WEBPACK_IMPORTED_MODULE_4__["WebsiteService"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"], _services_website_service_client__WEBPACK_IMPORTED_MODULE_3__["WebsiteService"]])
     ], WebsiteNewComponent);
     return WebsiteNewComponent;
 }());
@@ -1346,7 +1409,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _services_widget_service_client__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../services/widget.service.client */ "./src/app/services/widget.service.client.ts");
-/* harmony import */ var _widget_list_widget_list_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../widget-list/widget-list.component */ "./src/app/views/widget/widget-list/widget-list.component.ts");
+/* harmony import */ var _model_widget_model_client__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../model/widget.model.client */ "./src/app/model/widget.model.client.ts");
 
 
 
@@ -1356,7 +1419,7 @@ var WidgetChooseComponent = /** @class */ (function () {
     function WidgetChooseComponent(router, widgetService) {
         this.router = router;
         this.widgetService = widgetService;
-        this.widget = new _widget_list_widget_list_component__WEBPACK_IMPORTED_MODULE_4__["Widget"]('', '', '', '');
+        this.widget = new _model_widget_model_client__WEBPACK_IMPORTED_MODULE_4__["Widget"]('', '', '', '');
     }
     WidgetChooseComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -1426,7 +1489,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _services_widget_service_client__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../services/widget.service.client */ "./src/app/services/widget.service.client.ts");
-/* harmony import */ var _widget_list_widget_list_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../widget-list/widget-list.component */ "./src/app/views/widget/widget-list/widget-list.component.ts");
+/* harmony import */ var _model_widget_model_client__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../model/widget.model.client */ "./src/app/model/widget.model.client.ts");
 
 
 
@@ -1436,7 +1499,7 @@ var WidgetEditComponent = /** @class */ (function () {
     function WidgetEditComponent(router, widgetService) {
         this.router = router;
         this.widgetService = widgetService;
-        this.widget = new _widget_list_widget_list_component__WEBPACK_IMPORTED_MODULE_4__["Widget"]('', '', '', '');
+        this.widget = new _model_widget_model_client__WEBPACK_IMPORTED_MODULE_4__["Widget"]('', '', '', '');
     }
     WidgetEditComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -1744,12 +1807,11 @@ module.exports = "<nav class=\"navbar fixed-top cl-grey-navbar\">\n  <div class=
 /*!*******************************************************************!*\
   !*** ./src/app/views/widget/widget-list/widget-list.component.ts ***!
   \*******************************************************************/
-/*! exports provided: Widget, WidgetListComponent */
+/*! exports provided: WidgetListComponent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Widget", function() { return Widget; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "WidgetListComponent", function() { return WidgetListComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
@@ -1760,16 +1822,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-var Widget = /** @class */ (function () {
-    function Widget(name, _id, widgetType, pageId) {
-        this.name = name;
-        this._id = _id;
-        this.widgetType = widgetType;
-        this.pageId = pageId;
-    }
-    return Widget;
-}());
 
 var WidgetListComponent = /** @class */ (function () {
     function WidgetListComponent(router, widgetService, sanitizer) {

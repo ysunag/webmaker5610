@@ -1,8 +1,7 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {Website} from '../website-list/website-list.component';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {NgForm} from '@angular/forms';
 import {WebsiteService} from '../../../services/website.service.client';
+import {Website} from '../../../model/website.model.client';
 
 @Component({
   selector: 'app-website-edit',
@@ -10,8 +9,6 @@ import {WebsiteService} from '../../../services/website.service.client';
   styleUrls: ['./website-edit.component.css']
 })
 export class WebsiteEditComponent implements OnInit {
-
-  // @ViewChild('f') loginForm: NgForm;
   uid: String;
   website: Website;
   websites: Array<Website>;

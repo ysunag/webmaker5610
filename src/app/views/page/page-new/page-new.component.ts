@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {Page} from '../page-list/page-list.component';
 import {ActivatedRoute} from '@angular/router';
 import {PageService} from '../../../services/page.service.client';
+import {Page} from '../../../model/page.model.client';
 
 @Component({
   selector: 'app-page-new',
