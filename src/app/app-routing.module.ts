@@ -14,6 +14,7 @@ import {WidgetChooseComponent} from './views/widget/widget-choose/widget-choose.
 import {WidgetEditComponent} from './views/widget/widget-edit/widget-edit.component';
 
 const routes: Routes = [
+  { path: '', component: LoginComponent },
   { path: 'login', component: LoginComponent },
   { path: 'user/:uid', component: ProfileComponent },
   { path: 'register', component: RegisterComponent },
