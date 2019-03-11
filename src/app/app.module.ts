@@ -23,6 +23,9 @@ import {UserService} from './services/user.service.client';
 import {WebsiteService} from './services/website.service.client';
 import {PageService} from './services/page.service.client';
 import {WidgetService} from './services/widget.service.client';
+import { ChangeBgColorDirective } from './directives/change-bg-color.directive';
+import { SortableDirectiveDirective } from './directives/sortable-directive.directive';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -42,10 +45,13 @@ import {WidgetService} from './services/widget.service.client';
     WidgetListComponent,
     WidgetYoutubeComponent,
     WidgetEditComponent,
+    ChangeBgColorDirective,
+    SortableDirectiveDirective,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     FormsModule
   ],
   providers: [UserService, WebsiteService, PageService, WidgetService],

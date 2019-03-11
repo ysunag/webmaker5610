@@ -24,14 +24,26 @@ export class ProfileComponent implements OnInit {
     console.log(this.user['firstName']);
     console.log(this.user['lastName']);
     console.log(this.user['email']);
-    this.userService.updateUser(this.user['_id'], this.user);
+    this.router.params.subscribe(params => {
+      this.userService.updateUser(this.user['_id'], this.user)
+        .subscribe((user: any) => {
+            this.user = user;
+        });
+    });
   }
 
   ngOnInit() {
+
     this.router.params.subscribe(params => {
       this.userId = params['uid'];
       console.log(this.userId);
-      this.user = this.userService.findUserById(this.userId);
+
+      this.userService.findUserById(this.userId)
+        .subscribe((user: any) => {
+          if (user) {
+            this.user = user;
+          }
+        });
       console.log(this.user);
       this.username = this.user['username'];
     });

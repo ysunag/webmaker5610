@@ -21,6 +21,8 @@ app.use(function(req, res, next) {
 });
 
 
+require("./assignment/app")(app);
+
 
 const port = process.env.PORT || '3200';
 app.set('port', port);
@@ -30,4 +32,13 @@ app.set('port', port);
 const server = http.createServer(app);
 server.listen( port , () => console.log('Running on port 3200'));
 
-//require('./assignment/app')(app);
+
+
+// //my api list
+// app.get('/api/user/123', findUserById);
+// function findUserById (req,res) {
+//   res.status(200).send("Find a user!");
+// }
+
+
+require('./assignment/app')(app);
