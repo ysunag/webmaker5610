@@ -15,14 +15,20 @@ export class WidgetImageComponent implements OnInit {
   pid: String;
   widget: Widget;
 
-  constructor(private router: ActivatedRoute, private widgetService: WidgetService) { }
+  constructor(private router: ActivatedRoute, private widgetService: WidgetService) {
+    this.widget = new Widget('', '', '', '');
+  }
 
   ngOnInit() {
     this.router.params.subscribe(params => {
       this.uid = params['uid'];
       this.wid = params['wid'];
       this.pid = params['pid'];
-      this.widget = this.widgetService.findWidgetById(params['wgid']);
+      this.widgetService.findWidgetById(params['wgid']).subscribe((widget: any) => {
+        if (widget) {
+          this.widget = widget;
+        }
+      });
       console.log('user id: ' + this.uid);
       console.log('widget id: ' + this.widget._id);
       console.log('web id: ' + this.wid);
@@ -33,15 +39,20 @@ export class WidgetImageComponent implements OnInit {
     console.log(this.widget.name);
     console.log(this.widget.text);
     console.log(this.widget.size);
-    this.widgetService.updateWidget(this.widget._id, this.widget);
+    this.router.params.subscribe(params => {
+      return this.widgetService.updateWidget(this.widget._id, this.widget)
+        .subscribe((widget: any) => {});
+    });
   }
 
   DeleteWidget() {
     console.log(this.widget.name);
     console.log(this.widget.text);
     console.log(this.widget.size);
-    this.widgetService.deleteWidget(this.widget._id);
-
+    this.router.params.subscribe(params => {
+      return this.widgetService.deleteWidget(this.widget._id)
+        .subscribe((widgets: any) => {});
+    });
   }
 
 }

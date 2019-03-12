@@ -1,7 +1,7 @@
 module.exports=function(app) {
 
 
-  const users = [
+  let users = [
     {_id: '123', username: 'alice', password: 'alice', firstName: 'Alice', lastName: 'Wonder', email: 'alice@alice'},
     {_id: '234', username: 'bob', password: 'bob', firstName: 'Bob', lastName: 'Marley', email: 'bob@bob'},
     {_id: '345', username: 'charly', password: 'charly', firstName: 'Charly', lastName: 'Garcia' , email: 'charly@charly'},
@@ -21,7 +21,7 @@ module.exports=function(app) {
   function createUser(req, res) {
     const user = req.body;
     user._id = (new Date()).getTime() + "";
-    this.users.push(user);
+    users.push(user);
     res.json(user);
   }
 
@@ -45,10 +45,17 @@ module.exports=function(app) {
   function findUserByCred(req, res){
     const username = req.query['username'];
     const password  = req.query['password'];
-    const user = users.find(function (user) {
-      return user.username === username && user.password === password;
-    });
-    res.json(user);
+    // const user = users.find(function (user) {
+    //   return user.username === username && user.password === password;
+    // });
+    //
+    for(let i = 0; i < users.length; i++) {
+      if (users[i].username === username && users[i].password === password) {
+        res.status(200).send(users[i]);
+        return;
+      }
+    }
+    res.status(404).send("not found!");
   }
 
   function findAllUsers(req, res) {
@@ -64,10 +71,12 @@ module.exports=function(app) {
 
     for(let i = 0; i < users.length; i++) {
       if (users[i]._id === userId) {
+        users[i].username = user.username;
         users[i].firstName = user.firstName;
         users[i].lastName = user.lastName;
+        users[i].email = user.email;
 
-        res.status(200).send(user);
+        res.status(200).send(users[i]);
         return;
       }
     }

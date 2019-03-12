@@ -30,13 +30,20 @@ export class WidgetChooseComponent implements OnInit {
       console.log('web id: ' + this.wid);
       console.log('page id: ' + this.pid);
       this.widget.size = 1;
-      this.widget = this.widgetService.createWidget(this.pid, this.widget);
+      this.widgetService.createWidget(this.pid, this.widget).subscribe((widget: any) => {
+        if (widget) {
+          this.widget = widget;
+        }
+      });
     });
   }
 
   updateWidgetType(widgetType) {
     this.widget.widgetType = widgetType;
-    this.widgetService.updateWidget(this.widget._id, this.widget);
+    this.router.params.subscribe(params => {
+      return this.widgetService.updateWidget(this.widget._id, this.widget).subscribe((widgets: any) => {
+      });
+    });
   }
 
 }

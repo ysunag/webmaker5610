@@ -26,7 +26,11 @@ export class WidgetListComponent implements OnInit {
       this.uid = params['uid'];
       this.wid = params['wid'];
       this.pid = params['pid'];
-      this.widgets = this.widgetService.findWidgetsByPageId(params['pid']);
+      this.widgetService.findWidgetsByPageId(params['pid']).subscribe((widgets: any) => {
+        if (widgets) {
+          this.widgets = widgets;
+        }
+      });
       console.log('user id: ' + this.uid);
       console.log('web id: ' + this.wid);
       console.log('page id: ' + this.pid);

@@ -17,7 +17,9 @@ export class ProfileComponent implements OnInit {
   userId: string;
   username: String;
 
-  constructor(private router: ActivatedRoute, private userService: UserService) {}
+  constructor(private router: ActivatedRoute, private userService: UserService) {
+    this.user = new User('', '', '', '', '', '');
+  }
 
   UpdateUser() {
     console.log(this.user['username']);
@@ -25,7 +27,7 @@ export class ProfileComponent implements OnInit {
     console.log(this.user['lastName']);
     console.log(this.user['email']);
     this.router.params.subscribe(params => {
-      this.userService.updateUser(this.user['_id'], this.user)
+      return this.userService.updateUser(this.user['_id'], this.user)
         .subscribe((user: any) => {
             this.user = user;
         });
@@ -39,7 +41,7 @@ export class ProfileComponent implements OnInit {
       console.log(this.userId);
 
       this.userService.findUserById(this.userId)
-        .subscribe((user: any) => {
+        .subscribe((user: User) => {
           if (user) {
             this.user = user;
           }

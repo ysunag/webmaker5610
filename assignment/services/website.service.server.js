@@ -50,7 +50,7 @@ module.exports=function(app) {
     res.json(curWebsites);
   }
 
-  function  getWebsitesForUserId(userId) {
+  function getWebsitesForUserId(userId) {
     const curWebsites=[];
 
     for(let i = 0; i < websites.length; i++) {
@@ -87,16 +87,15 @@ module.exports=function(app) {
 
   function deleteWebsite(req, res) {
     const websiteId = req.params['websiteId'];
+    let userId = null;
     for (let i = 0; i < websites.length; i++) {
       if (websites[i]._id === websiteId) {
-        const userId = websites[i].developerId;
+        userId = websites[i].developerId;
         websites.splice(i, 1);
-        const curWebsites = getWebsitesForUserId(userId);
-        res.json(curWebsites);
-        return;
+        break;
       }
     }
+    res.json(getWebsitesForUserId(userId));
   }
-
 
 }

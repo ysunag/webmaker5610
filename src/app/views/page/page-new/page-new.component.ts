@@ -21,6 +21,10 @@ export class PageNewComponent implements OnInit {
     console.log(this.page.name);
     console.log(this.page.title);
     this.pageService.createPage(this.wid, this.page);
+    this.router.params.subscribe(params => {
+      return this.pageService.createPage(this.wid, this.page)
+        .subscribe((pages: any) => {});
+    });
   }
 
   ngOnInit() {

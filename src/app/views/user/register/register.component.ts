@@ -40,11 +40,15 @@ export class RegisterComponent implements OnInit {
     this.user.username = this.username;
     this.user.password = this.password;
     this.userService.createUser(this.user)
-      .subscribe((user: any) => {
+      .subscribe((user: User) => {
         this.user = user;
         this.router.navigate(['/user', this.user._id]);
+      }, (error: any) => {
+        if (error) {
+          this.errorFlag = true;
+        }
       });
-}
+  }
 
   ngOnInit() {
   }

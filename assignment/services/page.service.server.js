@@ -18,8 +18,7 @@ module.exports=function(app) {
     page._id = (new Date()).getTime() + "";
     page.websiteId = websiteId;
     pages.push(page);
-    const curPages = getPagesForWebsiteId(websiteId);
-    res.json(curPages);
+    res.json(page);
   }
 
   function getPagesForWebsiteId(websiteId) {
