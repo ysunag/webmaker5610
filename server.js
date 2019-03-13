@@ -11,6 +11,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Point static path to dist -- For building -- REMOVE
 app.use(express.static(path.join(__dirname, 'dist/webmaker5610')));
+app.use(express.static(path.join(__dirname, 'src/assets')));
 
 // CORS
 app.use(function(req, res, next) {
@@ -27,10 +28,17 @@ require("./assignment/app")(app);
 const port = process.env.PORT || '3200';
 app.set('port', port);
 
+app.get('*', function (req, res) {
+  // res.sendFile(path.join(__dirname, 'dist/index.html'));
+  res.sendFile(path.join(__dirname, 'dist/webmaker5610/index.html'));
+});
+
 
 // Create HTTP server
 const server = http.createServer(app);
 server.listen( port , () => console.log('Running on port 3200'));
+
+
 
 
 
