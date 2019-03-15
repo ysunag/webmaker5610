@@ -1059,11 +1059,9 @@ var LoginComponent = /** @class */ (function () {
             if (user) {
                 _this.router.navigate(['/user', user._id]);
             }
-        }, function (error) {
-            if (error) {
+            else {
                 console.log(username);
                 console.log(password);
-                console.log(error);
                 _this.errorFlag = true;
             }
         });
@@ -1244,15 +1242,21 @@ var RegisterComponent = /** @class */ (function () {
         console.log(this.verifyPassword);
         this.user.username = this.username;
         this.user.password = this.password;
-        this.userService.createUser(this.user)
-            .subscribe(function (user) {
-            _this.user = user;
-            _this.router.navigate(['/user', _this.user._id]);
-        }, function (error) {
-            if (error) {
-                _this.errorFlag = true;
-            }
-        });
+        if (this.password === this.verifyPassword) {
+            this.userService.createUser(this.user)
+                .subscribe(function (user) {
+                _this.user = user;
+                _this.router.navigate(['/user', _this.user._id]);
+            }, function (error) {
+                if (error) {
+                    _this.errorFlag = true;
+                }
+            });
+        }
+        else {
+            this.errorMsg = 'Passwords do not match!';
+            this.errorFlag = true;
+        }
     };
     RegisterComponent.prototype.ngOnInit = function () {
     };

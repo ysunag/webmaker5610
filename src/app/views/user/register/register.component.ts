@@ -39,15 +39,20 @@ export class RegisterComponent implements OnInit {
     console.log(this.verifyPassword);
     this.user.username = this.username;
     this.user.password = this.password;
-    this.userService.createUser(this.user)
-      .subscribe((user: User) => {
-        this.user = user;
-        this.router.navigate(['/user', this.user._id]);
-      }, (error: any) => {
-        if (error) {
-          this.errorFlag = true;
-        }
-      });
+    if (this.password === this.verifyPassword) {
+      this.userService.createUser(this.user)
+        .subscribe((user: User) => {
+          this.user = user;
+          this.router.navigate(['/user', this.user._id]);
+        }, (error: any) => {
+          if (error) {
+            this.errorFlag = true;
+          }
+        });
+    } else {
+      this.errorMsg = 'Passwords do not match!';
+      this.errorFlag = true;
+    }
   }
 
   ngOnInit() {
