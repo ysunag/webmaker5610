@@ -19,7 +19,7 @@
       Please enter password!
     </span>
     <div class="form-group">
-      <input type="verify password" name="verifyPassword" placeholder="verify password" class="form-control" ngModel required #password="ngModel">
+      <input type="password" name="verifyPassword" placeholder="verify password" class="form-control" ngModel required #password="ngModel">
     </div>
     <span class="help-block" *ngIf="!password.valid && password.touched">
       Please reenter password!
