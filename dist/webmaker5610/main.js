@@ -734,7 +734,7 @@ var WidgetService = /** @class */ (function () {
     };
     WidgetService.prototype.reorderWidgets = function (startIndex, endIndex, pageId) {
         var url = this.baseUrl + '/api/page/' + pageId + '/widget?start=' + startIndex + '&end=' + endIndex;
-        return this.http.put(url, '');
+        return this.http.put(url, '', { responseType: 'text' });
     };
     WidgetService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),

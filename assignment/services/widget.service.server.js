@@ -141,10 +141,6 @@ module.exports=function(app) {
 
 
   function reorderWidgets(req,res) {
-    console.log("start index");
-    console.log(req.query["start"]);
-    console.log("end index");
-    console.log(req.query["end"]);
     const startIndex = parseInt(req.query["start"]);
     const endIndex = parseInt(req.query["end"]);
 
