@@ -8,7 +8,7 @@ module.exports=function(app) {
     { _id: '456', widgetType: 'HTML', pageId: '321', text: '<p>Lorem ipsum</p>', name: 'No.4'},
     { _id: '567', widgetType: 'HEADING', pageId: '321', size: 4, text: 'Lorem ipsum', name: 'No.5'},
     { _id: '678', widgetType: 'YOUTUBE', pageId: '321', width: '100%',
-      url: 'https://www.youtube.com/embed/AM2Ivdi9c4E', name: 'No.6'},
+      url: 'https://www.youtube.com/watch?v=0aA5vzTiBa0', name: 'No.6'},
     { _id: '789', widgetType: 'HTML', pageId: '321', text: '<p>Lorem ipsum</p>', name: 'No.7'}
   ];
 
@@ -21,6 +21,8 @@ module.exports=function(app) {
   app.get("/api/widget/:widgetId", findWidgetById);
   app.put("/api/widget/:widgetId", updateWidget);
   app.delete("/api/widget/:widgetId", deleteWidget);
+
+  app.put("/api/page/:pageId/widget",reorderWidgets);
 
   function createWidget(req, res){
     const pageId  = req.params['pageId'];
@@ -120,4 +122,33 @@ module.exports=function(app) {
     res.redirect(callbackUrl);
   }
 
+
+  function array_swap(arr, old_index, new_index) {
+    while (old_index < 0) {
+      old_index += arr.length;
+    }
+    while (new_index < 0) {
+      new_index += arr.length;
+    }
+    if (new_index >= arr.length) {
+      let k = new_index - arr.length + 1;
+      while (k--) {
+        arr.push(undefined);
+      }
+    }
+    arr.splice(new_index, 0, arr.splice(old_index, 1)[0]);
+  }
+
+
+  function reorderWidgets(req,res) {
+    console.log("start index");
+    console.log(req.query["start"]);
+    console.log("end index");
+    console.log(req.query["end"]);
+    const startIndex = parseInt(req.query["start"]);
+    const endIndex = parseInt(req.query["end"]);
+
+    array_swap(widgets, startIndex, endIndex);
+    res.sendStatus(200);
+  }
 }

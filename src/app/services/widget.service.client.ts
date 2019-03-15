@@ -53,4 +53,9 @@ export class WidgetService {
         return response;
       }));
   }
+
+  reorderWidgets(startIndex, endIndex, pageId) {
+    const url = this.baseUrl + '/api/page/' + pageId + '/widget?start=' + startIndex + '&end=' + endIndex;
+    return this.http.put(url, '');
+  }
 }

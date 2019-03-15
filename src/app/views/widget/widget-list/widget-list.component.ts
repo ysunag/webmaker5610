@@ -19,7 +19,9 @@ export class WidgetListComponent implements OnInit {
   pid: String;
   widgets: Array<Widget>;
 
-  constructor(private router: ActivatedRoute, private widgetService: WidgetService, private sanitizer: DomSanitizer) { }
+  constructor(private router: ActivatedRoute, private widgetService: WidgetService, private sanitizer: DomSanitizer) {
+    this.widgets = new Array<Widget>();
+  }
 
   ngOnInit() {
     this.router.params.subscribe(params => {
@@ -48,5 +50,13 @@ export class WidgetListComponent implements OnInit {
     const heading = '<h' + widget.size + '>' + widget.text + '</h' + widget.size + '>';
     console.log(heading);
     return heading;
+  }
+
+
+  reorderWidgets(indexes) {
+    this.widgetService.reorderWidgets(indexes.startIndex, indexes.endIndex, this.pid)
+      .subscribe(
+        (data) => console.log(data)
+      );
   }
 }

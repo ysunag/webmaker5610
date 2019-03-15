@@ -24,8 +24,11 @@ import {WebsiteService} from './services/website.service.client';
 import {PageService} from './services/page.service.client';
 import {WidgetService} from './services/widget.service.client';
 import { ChangeBgColorDirective } from './directives/change-bg-color.directive';
-import { SortableDirectiveDirective } from './directives/sortable-directive.directive';
+import { SortableDirective } from './directives/sortable-directive.directive';
 import {HttpClientModule} from '@angular/common/http';
+import {SafePipe} from './views/widget/widget-list/safe-pipe.pipe';
+import {OrderByPipe} from './views/widget/widget-list/order-by-pipe.pipe';
+import { FlickrImageSearchComponent } from './views/widget/widget-edit/widget-image/flickr-image-search/flickr-image-search.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +49,10 @@ import {HttpClientModule} from '@angular/common/http';
     WidgetYoutubeComponent,
     WidgetEditComponent,
     ChangeBgColorDirective,
-    SortableDirectiveDirective,
+    SortableDirective,
+    SafePipe,
+    OrderByPipe,
+    FlickrImageSearchComponent,
   ],
   imports: [
     BrowserModule,

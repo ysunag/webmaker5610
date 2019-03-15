@@ -1,8 +1,8 @@
-import { SortableDirectiveDirective } from './sortable-directive.directive';
+import { SortableDirective } from './sortable-directive.directive';
 
 describe('SortableDirectiveDirective', () => {
   it('should create an instance', () => {
-    const directive = new SortableDirectiveDirective();
+    const directive = new SortableDirective();
     expect(directive).toBeTruthy();
   });
 });
