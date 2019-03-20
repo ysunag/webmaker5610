@@ -13,7 +13,8 @@ export class FlickrService {
 
   key = 'ce732fc28bcf40025297ccc22b4a324d';
   secret = '2b32279a76c53c89';
-  flickerUrl = 'https://api.flickr.com/services/rest/?method=flickr.photos.search&format=json&api_key=API_KEY&text=TEXT';
+  flickerUrl = 'https://api.flickr.com/services/rest/?method=flickr.photos.search&format=json&api_key=API_KEY&text=TEXT' +
+    '&format=json&nojsoncallback=1';
 
   searchPhotos(searchTerm: any) {
     const url = this.flickerUrl
