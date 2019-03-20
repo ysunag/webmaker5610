@@ -44,11 +44,11 @@
     <br/>
   </form>
 
-  <!--<a class="btn btn-primary btn-block cl-blue-navbar" routerLink="#">Upload Image</a>-->
+  <a class="btn btn-danger  btn-block" routerLink="/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget/{{widget._id}}/flickr">Search</a>
   <a class="btn btn-danger  btn-block" (click)="DeleteWidget()" routerLink="/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget">Delete</a>
 </div>
 
-<<nav class="navbar fixed-bottom cl-grey-navbar">
+<nav class="navbar fixed-bottom cl-grey-navbar">
   <div class="container-fluid justify-content-end">
     <a routerLink="/user/{{uid}}" class="navbar-brand cl-icon-padding cl-text-blue">
       <span class="fas fa-user"></span>

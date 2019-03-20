@@ -29,6 +29,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {SafePipe} from './views/widget/widget-list/safe-pipe.pipe';
 import {OrderByPipe} from './views/widget/widget-list/order-by-pipe.pipe';
 import { FlickrImageSearchComponent } from './views/widget/widget-edit/widget-image/flickr-image-search/flickr-image-search.component';
+import {FlickrService} from './services/flickr.service.client';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,7 @@ import { FlickrImageSearchComponent } from './views/widget/widget-edit/widget-im
     HttpClientModule,
     FormsModule
   ],
-  providers: [UserService, WebsiteService, PageService, WidgetService],
+  providers: [UserService, WebsiteService, PageService, WidgetService, FlickrService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
