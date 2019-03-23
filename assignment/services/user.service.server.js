@@ -1,12 +1,12 @@
 module.exports=function(app) {
 
 
-  let users = [
-    {_id: '123', username: 'alice', password: 'alice', firstName: 'Alice', lastName: 'Wonder', email: 'alice@alice'},
-    {_id: '234', username: 'bob', password: 'bob', firstName: 'Bob', lastName: 'Marley', email: 'bob@bob'},
-    {_id: '345', username: 'charly', password: 'charly', firstName: 'Charly', lastName: 'Garcia' , email: 'charly@charly'},
-    {_id: '456', username: 'jannunzi', password: 'jannunzi', firstName: 'Jose', lastName: 'Annunzi', email: 'jannunzi@jannunzi' }
-  ];
+  // let users = [
+  //   {_id: '123', username: 'alice', password: 'alice', firstName: 'Alice', lastName: 'Wonder', email: 'alice@alice'},
+  //   {_id: '234', username: 'bob', password: 'bob', firstName: 'Bob', lastName: 'Marley', email: 'bob@bob'},
+  //   {_id: '345', username: 'charly', password: 'charly', firstName: 'Charly', lastName: 'Garcia' , email: 'charly@charly'},
+  //   {_id: '456', username: 'jannunzi', password: 'jannunzi', firstName: 'Jose', lastName: 'Annunzi', email: 'jannunzi@jannunzi' }
+  // ];
 
 
   app.post("/api/user", createUser);
@@ -14,53 +14,94 @@ module.exports=function(app) {
   app.get("/api/user?username=username", findUserByUsername);
   app.get("/api/user/:userId", findUserById);
   app.get("/api/user?username=username&password=password", findUserByCred);
-  app.get("/api/user", findUsers);
   app.delete("/api/user/:userId", deleteUser);
+
+  const userModel = require('../model/user/user.model.server');
+
+
+  // function createUser(req, res) {
+  //   for (let i = 0; i < users.length; i++) {
+  //     userModel
+  //       .createUser(users[i])
+  //       .then(function(user) {
+  //         console.log("user created!");
+  //
+  //       }, function(error) {
+  //         if (error) {
+  //           console.log("create user error" + error);
+  //           res.statusCode(400).send(error);
+  //         }
+  //       });
+  //      res.json("created all users");
+  //   }
+  // }
+
 
 
   function createUser(req, res) {
     const user = req.body;
-    user._id = (new Date()).getTime() + "";
-    users.push(user);
-    res.json(user);
+    userModel
+      .createUser(user)
+      .then(function(user) {
+        console.log("user created!");
+        res.json(user);
+      }, function(error) {
+        if (error) {
+          console.log("create user error" + error);
+          res.statusCode(400).send(error);
+        }
+      });
+
   }
 
 
   function findUserByUsername(req, res) {
     const userName = req.params['username'];
-    const user = users.find(function (user) {
-      return user.username === userName;
-    });
-    res.json(user);
+    userModel
+      .findUserByUserName(userName)
+      .then(function(user) {
+        console.log("find user by username:" + user);
+        res.json(user);
+      }, function(error) {
+        if (error) {
+          console.log("Find user by username error:" + error);
+          res.statusCode(404).send(error);
+        }
+      });
   }
 
   function findUserById(req, res){
     const userId = req.params['userId'];
-    const user = users.find(function (user) {
-      return user._id === userId;
-    });
-    res.json(user);
+    userModel
+      .findUserById(userId)
+      .then(function(user) {
+        console.log("find user by id:" + user);
+        res.json(user);
+      }, function(error) {
+        if (error) {
+          console.log("Find user by id error:" + error);
+          res.statusCode(404).send(error);
+        }
+      });
   }
 
   function findUserByCred(req, res){
     const username = req.query['username'];
     const password  = req.query['password'];
-    // const user = users.find(function (user) {
-    //   return user.username === username && user.password === password;
-    // });
-    //
-    for(let i = 0; i < users.length; i++) {
-      if (users[i].username === username && users[i].password === password) {
-        res.status(200).send(users[i]);
-        return;
-      }
-    }
-    res.status(404).send("not found!");
+
+    userModel
+      .findUserByCredentials(username, password)
+      .then(function(user) {
+        console.log("find user by credentials:" + user);
+        res.json(user);
+      }, function(error) {
+        if (error) {
+          console.log("Find user by credentials error:" + error);
+          res.statusCode(404).send(error);
+        }
+      });
   }
 
-  function findAllUsers(req, res) {
-    res.json(users);
-  }
 
   function updateUserById(req, res) {
     const userId = req.params['userId'];
@@ -69,44 +110,35 @@ module.exports=function(app) {
     console.log(req.body);
     console.log("update user: " + userId + " " + user.firstName + " " + user.lastName);
 
-    for(let i = 0; i < users.length; i++) {
-      if (users[i]._id === userId) {
-        users[i].username = user.username;
-        users[i].firstName = user.firstName;
-        users[i].lastName = user.lastName;
-        users[i].email = user.email;
-
-        res.status(200).send(users[i]);
-        return;
-      }
-    }
-    res.status(404).send("not found!");
-  }
-
-  function findUsers(req, res) {
-    const username = req.query["username"];
-    const password = req.query["password"];
-
-    let user = null;
-
-    if (username && password){
-      user = users.find(function (user) {
-        return user.username === username && user.password === password;
+    userModel
+      .updateUser(userId,user)
+      .then(function(user) {
+        console.log("update user:" + user);
+        res.json(user);
+      }, function(error) {
+        if (error) {
+          console.log("update user error:" + error);
+          res.statusCode(400).send(error);
+        }
       });
-    }
-    res.json(user);
+
   }
+
 
 
   function deleteUser(req, res) {
     const userId = req.params['userId'];
-    for (let i = 0; i < users.length; i++) {
-      if (users[i]._id === userId) {
-        users.splice(i, 1);
-        res.json(users);
-        return;
-      }
-    }
+    userModel
+      .deleteUser(userId)
+      .then(function(user) {
+        console.log("delete user:" + user);
+        res.json(user);
+      }, function(error) {
+        if (error) {
+          console.log("delete user error:" + error);
+          res.statusCode(400).send(error);
+        }
+      });
   }
 
 }

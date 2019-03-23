@@ -24,40 +24,69 @@ module.exports=function(app) {
 
   app.put("/api/page/:pageId/widget",reorderWidgets);
 
+
+  const widgetModel = require('../model/widget/widget.model.server');
+
+
+
   function createWidget(req, res){
     const pageId  = req.params['pageId'];
     const widget = req.body;
-    widget._id = (new Date()).getTime() + "";
-    widget.pageId= pageId;
-    widgets.push(widget);
-    res.json(widget);
+
+    widgetModel
+      .createWidget(pageId, widget)
+      .then(function(widget) {
+        console.log("widget created!");
+        res.json(widget);
+      }, function(error) {
+        if (error) {
+          console.log("create widget error" + error);
+          res.statusCode(400).send(error);
+        }
+      });
   }
 
-  function getWidgetsForPageId(pageId) {
-    const curWidgets = [];
-
-    for (let i = 0; i < widgets.length; i++) {
-      if (widgets[i].pageId === pageId) {
-        curWidgets.push(widgets[i]);
-      }
-    }
-    return curWidgets;
-  }
+  // function getWidgetsForPageId(pageId) {
+  //
+  //   const curWidgets = [];
+  //
+  //   for (let i = 0; i < widgets.length; i++) {
+  //     if (widgets[i].pageId === pageId) {
+  //       curWidgets.push(widgets[i]);
+  //     }
+  //   }
+  //   return curWidgets;
+  // }
 
 
   function findAllWidgetsForPage(req, res) {
     const pageId = req.params['pageId'];
-    const curWidgets = getWidgetsForPageId(pageId);
-    res.json(curWidgets);
+    widgetModel
+      .findAllWidgetsForPage(pageId)
+      .then(function(widgets) {
+        console.log("find widgets by page id:" + widgets);
+        res.json(widgets);
+      }, function(error) {
+        if (error) {
+          console.log("Find widgets by page id error:" + error);
+          res.statusCode(404).send(error);
+        }
+      });
   }
 
 
   function getWidgetById(widgetId){
-    for(let i = 0; i < widgets.length; i++) {
-      if (widgets[i]._id === widgetId) {
-        return widgets[i];
-      }
-    }
+    widgetModel
+      .findWidgetById( widgetId)
+      .then(function( widget) {
+        console.log("find  widget by id:" +  widget);
+        return  widget;
+      }, function(error) {
+        if (error) {
+          console.log("Find  widget by id error:" + error);
+          return null;
+        }
+      });
   }
 
 
@@ -69,28 +98,55 @@ module.exports=function(app) {
   function updateWidget(req, res) {
     const widgetId = req.params['widgetId'];
     const newWidget = req.body;
-    let pageId = null;
-    for(let i = 0; i < widgets.length; i++) {
-      if (widgets[i]._id === widgetId) {
-        pageId = widgets[i].pageId;
-        widgets[i] = newWidget;
-        break;
-      }
-    }
-    res.json(getWidgetsForPageId(pageId));
+
+    widgetModel
+      .updatePage(widgetId, newWidget)
+      .then(function(widget) {
+        console.log("widget updated!");
+        widgetModel
+          .findAllWidgetsForPage(widget.pageId)
+          .then(function(widgets) {
+            console.log("find widgets by page id:" + widgets);
+            res.json(widgets);
+          }, function(error) {
+            if (error) {
+              console.log("Find widgets by page id error:" + error);
+              res.statusCode(404).send(error);
+            }
+          });
+      }, function(error) {
+        if (error) {
+          console.log("update pages error" + error);
+          res.statusCode(400).send(error);
+        }
+      });
   }
+
+
 
   function deleteWidget(req, res) {
     const widgetId = req.params['widgetId'];
-    for (let i = 0; i < widgets.length; i++) {
-      if (widgets[i]._id === widgetId) {
-        const pageId = widgets[i].pageId;
-        widgets.splice(i, 1);
-        const curWidgets = getWidgetsForPageId(pageId);
-        res.json(curWidgets);
-        return;
-      }
-    }
+
+    widgetModel.deleteWidget(widgetId)
+      .then(function(widget) {
+        console.log("widget removed!");
+        widgetModel
+          .findAllWidgetsForPage(widget.pageId)
+          .then(function(widgets) {
+            console.log("find widgets by page id:" + widgets);
+            res.json(widgets);
+          }, function(error) {
+            if (error) {
+              console.log("Find widgets by page id error:" + error);
+              res.statusCode(404).send(error);
+            }
+          });
+      }, function(error) {
+        if (error) {
+          console.log("delete page error" + error);
+          res.statusCode(400).send(error);
+        }
+      });
   }
 
 
@@ -123,28 +179,21 @@ module.exports=function(app) {
   }
 
 
-  function array_swap(arr, old_index, new_index) {
-    while (old_index < 0) {
-      old_index += arr.length;
-    }
-    while (new_index < 0) {
-      new_index += arr.length;
-    }
-    if (new_index >= arr.length) {
-      let k = new_index - arr.length + 1;
-      while (k--) {
-        arr.push(undefined);
-      }
-    }
-    arr.splice(new_index, 0, arr.splice(old_index, 1)[0]);
-  }
-
 
   function reorderWidgets(req,res) {
     const startIndex = parseInt(req.query["start"]);
     const endIndex = parseInt(req.query["end"]);
 
-    array_swap(widgets, startIndex, endIndex);
-    res.sendStatus(200);
+    widgetModel
+      .reorderWidget(pageId, startIndex, endIndex)
+      .then(function(response) {
+        console.log("widgets reordered:" + response);
+        res.sendStatus(200);
+      }, function(error) {
+        if (error) {
+          console.log("reorder widget error:" + error);
+          res.statusCode(404).send(error);
+        }
+      });
   }
 }

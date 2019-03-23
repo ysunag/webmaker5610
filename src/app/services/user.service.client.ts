@@ -23,7 +23,8 @@ export class UserService {
 
 
   createUser(user: any) {
-    return this.http.post(this.baseUrl + '/api/user', user).pipe(
+    const newUser = {firstName: user.firstName, lastName: user.lastNAme, email : user.email, password: user.password};
+    return this.http.post(this.baseUrl + '/api/user', newUser).pipe(
       map((response) => {
         return response;
       }));

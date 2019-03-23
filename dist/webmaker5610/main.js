@@ -616,7 +616,8 @@ var UserService = /** @class */ (function () {
         this.baseUrl = _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].baseUrl;
     }
     UserService.prototype.createUser = function (user) {
-        return this.http.post(this.baseUrl + '/api/user', user).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (response) {
+        var newUser = { firstName: user.firstName, lastName: user.lastNAme, email: user.email, password: user.password };
+        return this.http.post(this.baseUrl + '/api/user', newUser).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (response) {
             return response;
         }));
     };
