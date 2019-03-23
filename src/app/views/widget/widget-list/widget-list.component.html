@@ -40,7 +40,26 @@
       <div *ngSwitchCase="'HTML'" class="row">
         <div [innerHTML]="widget.text"></div>
         <div class="ml-auto">
+          <a routerLink="/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget/{{widget._id}}">
+            <span class="fas fa-cog cl-text-blue"></span>
+          </a>
           <a routerLink="#">
+            <span class="fas fa-bars cl-text-blue"></span>
+          </a>
+        </div>
+      </div>
+
+
+      <div *ngSwitchCase="'INPUT'" class="row">
+
+        <div *ngIf="widget.formatted">
+          <quill-editor [(ngModel)]="widget.text" name="text"></quill-editor>
+        </div>
+        <input *ngIf="!widget.formatted && (!widget.rows || widget.rows===1)" placeholder="{{widget.placeholder}}" class="form-control"/>
+        <textarea *ngIf="!widget.formatted && (widget.rows > 1)" rows="{{widget.rows}}" placeholder="{{widget.placeholder}}" class="form-control">{{widget.text}}</textarea>
+
+        <div class="ml-auto">
+          <a routerLink="/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget/{{widget._id}}">
             <span class="fas fa-cog cl-text-blue"></span>
           </a>
           <a routerLink="#">
@@ -51,7 +70,7 @@
 
 
 
-      <div *ngSwitchCase="'YOUTUBE'" class="row">
+      <div *ngSwitchCase="'YOUTUBE'" class="row youtube-widget">
         <div class="embed-responsive embed-responsive-16by9">
           <iframe class="embed-responsive-item" [src]="widget.url | safe" [ngStyle]="{'width': widget.width}" allowfullscreen></iframe>
         </div>

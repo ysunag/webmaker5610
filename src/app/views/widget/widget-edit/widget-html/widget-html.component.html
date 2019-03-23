@@ -1,0 +1,39 @@
+<nav class="navbar fixed-top cl-grey-navbar">
+  <div class="container-fluid">
+    <div>
+      <a routerLink="/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget" class="navbar-brand cl-text-black cl-icon-padding">
+        <i class="fas fa-angle-left"></i>
+      </a>
+      <a class="navbar-brand cl-text-black cl-text-bold cl-text-grey" routerLink="#">
+        Widgets Edit
+      </a>
+    </div>
+    <a (click)="UpdateWidget()" routerLink="/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget" class="navbar-brand cl-text-black float-right cl-icon-padding">
+      <i class="fas fa-check"></i>
+    </a>
+  </div>
+</nav>
+
+
+<div class="container">
+  <div class="form-group">
+    <label for="html-name">Name</label>
+    <input [(ngModel)]="widget.name" name="widget-name" type="text" class="form-control" id="html-name" placeholder="Name">
+  </div>
+  <div class="form-group">
+    <label>HTML</label>
+    <quill-editor [(ngModel)]="widget.text" name="text"></quill-editor>
+  </div>
+  <quill-editor [(ngModel)]="widget.text" name="text"></quill-editor>
+  <a class="btn btn-danger  btn-block" (click)="DeleteWidget()" routerLink="/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget">Delete</a>
+</div>
+
+
+
+<nav class="navbar fixed-bottom cl-grey-navbar">
+  <div class="container-fluid justify-content-end">
+    <a routerLink="/user/{{uid}}" class="navbar-brand cl-icon-padding cl-text-blue">
+      <span class="fas fa-user"></span>
+    </a>
+  </div>
+</nav>
