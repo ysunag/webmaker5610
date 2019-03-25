@@ -21,21 +21,21 @@ function createUser(user) {
 }
 
 function findUserById(id) {
-  return userModel.findById(id);
+  return userModel.findOne({_id: id});
 }
 
 function findUserByUserName(userName) {
-  return userModel.findOne({userName:userName});
+  return userModel.findOne({username:userName});
 }
 
 function findByCredential(userName,password){
-  return userModel.findOne({userName:userName,password:password});
+  return userModel.findOne({username:userName,password:password});
 }
 
 function updateUser(userId,user) {
-  return userModel.findByIdAndUpdate(userId,user);
+  return userModel.findOneAndUpdate({_id: userId},user,{new: true});
 }
 
 function deleteUser(userId){
-  return userModel.findByIdAndRemove(userId);
+  return userModel.findOneAndDelete({_id: userId});
 }

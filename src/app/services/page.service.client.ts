@@ -21,7 +21,7 @@ export class PageService {
   baseUrl = environment.baseUrl;
 
   createPage(websiteId, page)  {
-    const newPage = {pageName: page.pageName, pageTitle: page.pageTitle, websiteId: page.websiteId};
+    const newPage = {name: page.name, title: page.title, websiteId: websiteId};
     return this.http.post(this.baseUrl + '/api/website/' + websiteId + '/page', newPage).pipe(
       map((response) => {
         return response;

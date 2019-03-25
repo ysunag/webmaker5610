@@ -21,11 +21,8 @@ export class WidgetService {
   baseUrl = environment.baseUrl;
 
   createWidget(pageId, widget)   {
-    const newWidget = {name: widget.name, widgetType: widget.widgetType, pageId: widget.pageId};
-    return this.http.post(this.baseUrl + '/api/page/' + pageId + '/widget', widget).pipe(
-      map((response) => {
-        return response;
-      }));
+    const newWidget = {name: widget.name, widgetType: widget.widgetType, pageId: pageId};
+    return this.http.post(this.baseUrl + '/api/page/' + pageId + '/widget', newWidget);
   }
 
   findWidgetsByPageId(pageId)  {

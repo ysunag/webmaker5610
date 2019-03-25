@@ -23,7 +23,7 @@ export class UserService {
 
 
   createUser(user: any) {
-    const newUser = {firstName: user.firstName, lastName: user.lastNAme, email : user.email, password: user.password};
+    const newUser = {firstName: user.firstName, lastName: user.lastNAme, email : user.email, password: user.password, username: user.username};
     return this.http.post(this.baseUrl + '/api/user', newUser).pipe(
       map((response) => {
         return response;
@@ -51,10 +51,7 @@ export class UserService {
   }
 
   findUserByCredentials(username, password) {
-    return this.http.get<User>(this.baseUrl + '/api/user?username=' + username + '&password=' + password).pipe(
-      map((response) => {
-        return response;
-      }));
+    return this.http.get<User>(this.baseUrl + '/api/user?username=' + username + '&password=' + password);
   }
 
   deleteUser(userId: String) {

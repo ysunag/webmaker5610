@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const widgetSchema = require('./widget.schema.server');
 
-const widgetModel = mongoose.model("widget", widgetSchema);
+const widgetModel = mongoose.model("Widget", widgetSchema);
 const pageModel = require("../page/page.model.server");
 
 
@@ -41,19 +41,19 @@ function findAllWidgetsForPage(pageId) {
 
 
 function findWidgetById(id) {
-  return widgetModel.findById(id);
+  return widgetModel.findOne({_id: id});
 }
 
 
 
 function updateWidget(widgetId, widget) {
-  return widgetModel.findByIdAndUpdate(widgetId,widget)
+  return widgetModel.findOneAndUpdate({_id: widgetId},widget)
     .then(function (responseWidget) {
       pageModel.update(
         { "_id" : responseWidget.pageId, "widgets._id": widgetId },
-        { "$set": { "widgets.$": widget }},
-        function(err, widget) {
-          console.log(widget);
+        { "$set": { "widgets.$": responseWidget }},
+        function(err, res) {
+          console.log(res);
         });
       return responseWidget;
     });
@@ -62,14 +62,14 @@ function updateWidget(widgetId, widget) {
 
 
 function deleteWidget(widgetId) {
-  return widgetModel.findByIdAndRemove(widgetId)
+  return widgetModel.findOneAndDelete({_id: widgetId})
     .then(function (responseWidget) {
       pageModel.findOne({
         _id: responseWidget.pageId
       })
         .then(function (page) {
           if (page) {
-            page.widgets = page.widget.filter(function (widget) {
+            page.widgets = page.widgets.filter(function (widget) {
               return widget._id !== widgetId
             })
             page.save();

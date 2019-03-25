@@ -18,7 +18,7 @@ export class WidgetChooseComponent implements OnInit {
   widget: Widget;
 
   constructor(private router: ActivatedRoute, private widgetService: WidgetService) {
-    this.widget = new Widget('', '', '', '');
+    this.widget = new Widget('', '', 'HTML', '');
   }
 
   ngOnInit() {
@@ -41,6 +41,7 @@ export class WidgetChooseComponent implements OnInit {
   updateWidgetType(widgetType) {
     this.widget.widgetType = widgetType;
     this.router.params.subscribe(params => {
+      console.log('going to update widget: ' + this.widget);
       return this.widgetService.updateWidget(this.widget._id, this.widget).subscribe((widgets: any) => {
       });
     });

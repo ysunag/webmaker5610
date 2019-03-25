@@ -6,7 +6,7 @@ const websiteSchema = mongoose.Schema({
   name: String,
   description: String,
   pages: [PageSchema],
-  dateCreated: {type: Date, default: Date()}
+  dateCreated: {type: Date, default: Date.now()}
 }, {collection:'Websites'});
 
 module.exports = websiteSchema;

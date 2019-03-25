@@ -8,7 +8,6 @@ const widgetSchema = mongoose.Schema({
   width: String,
   text: String,
   url: String,
-  file: File,
   placeholder: String,
   description: String,
   height: String,
@@ -17,7 +16,7 @@ const widgetSchema = mongoose.Schema({
   icon: String,
   deletable: Boolean,
   formatted: Boolean,
-  dateCreated: {type: Date, default: Date()}
+  dateCreated: {type: Date, default: Date.now()}
 }, {collection:'Widgets'});
 
 module.exports = widgetSchema;

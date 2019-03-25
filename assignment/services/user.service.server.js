@@ -2,10 +2,10 @@ module.exports=function(app) {
 
 
   // let users = [
-  //   {_id: '123', username: 'alice', password: 'alice', firstName: 'Alice', lastName: 'Wonder', email: 'alice@alice'},
-  //   {_id: '234', username: 'bob', password: 'bob', firstName: 'Bob', lastName: 'Marley', email: 'bob@bob'},
-  //   {_id: '345', username: 'charly', password: 'charly', firstName: 'Charly', lastName: 'Garcia' , email: 'charly@charly'},
-  //   {_id: '456', username: 'jannunzi', password: 'jannunzi', firstName: 'Jose', lastName: 'Annunzi', email: 'jannunzi@jannunzi' }
+  //   {username: 'alice', password: 'alice', firstName: 'Alice', lastName: 'Wonder', email: 'alice@alice'},
+  //   {username: 'bob', password: 'bob', firstName: 'Bob', lastName: 'Marley', email: 'bob@bob'},
+  //   {username: 'charly', password: 'charly', firstName: 'Charly', lastName: 'Garcia' , email: 'charly@charly'},
+  //   {username: 'jannunzi', password: 'jannunzi', firstName: 'Jose', lastName: 'Annunzi', email: 'jannunzi@jannunzi' }
   // ];
 
 
@@ -19,22 +19,6 @@ module.exports=function(app) {
   const userModel = require('../model/user/user.model.server');
 
 
-  // function createUser(req, res) {
-  //   for (let i = 0; i < users.length; i++) {
-  //     userModel
-  //       .createUser(users[i])
-  //       .then(function(user) {
-  //         console.log("user created!");
-  //
-  //       }, function(error) {
-  //         if (error) {
-  //           console.log("create user error" + error);
-  //           res.statusCode(400).send(error);
-  //         }
-  //       });
-  //      res.json("created all users");
-  //   }
-  // }
 
 
 
@@ -90,7 +74,7 @@ module.exports=function(app) {
     const password  = req.query['password'];
 
     userModel
-      .findUserByCredentials(username, password)
+      .findByCredential(username, password)
       .then(function(user) {
         console.log("find user by credentials:" + user);
         res.json(user);
@@ -118,7 +102,7 @@ module.exports=function(app) {
       }, function(error) {
         if (error) {
           console.log("update user error:" + error);
-          res.statusCode(400).send(error);
+          res.send(error);
         }
       });
 

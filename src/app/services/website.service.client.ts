@@ -20,7 +20,7 @@ export class WebsiteService {
 
   baseUrl = environment.baseUrl;
   createWebsite(userId, website) {
-    const newWebsite = {websiteName: website.websiteName, websiteDescription: website.websiteDescription, developerId: website.developerId};
+    const newWebsite = {name: website.name, description: website.description, developerId: userId};
     return this.http.post(this.baseUrl + '/api/user/' + userId + '/website', newWebsite).pipe(
       map((response) => {
         return response;

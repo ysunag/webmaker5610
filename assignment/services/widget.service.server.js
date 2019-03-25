@@ -1,15 +1,15 @@
 module.exports=function(app) {
 
   const widgets= [
-    { _id: '123', widgetType: 'HEADING', pageId: '321', size: 2, text: 'GIZMODO', name: 'No.1'},
-    { _id: '234', widgetType: 'HEADING', pageId: '321', size: 4, text: 'Lorem ipsum', name: 'No.2'},
-    { _id: '345', widgetType: 'IMAGE', pageId: '321', width: '100%',
+    { widgetType: 'HEADING', pageId: '321', size: 2, text: 'GIZMODO', name: 'No.1'},
+    { widgetType: 'HEADING', pageId: '321', size: 4, text: 'Lorem ipsum', name: 'No.2'},
+    { widgetType: 'IMAGE', pageId: '321', width: '100%',
       url: 'https://justifiedgrid.com/wp-content/uploads/life/biking/137646854.jpg', name: 'No.3'},
-    { _id: '456', widgetType: 'HTML', pageId: '321', text: '<p>Lorem ipsum</p>', name: 'No.4'},
-    { _id: '567', widgetType: 'HEADING', pageId: '321', size: 4, text: 'Lorem ipsum', name: 'No.5'},
-    { _id: '678', widgetType: 'YOUTUBE', pageId: '321', width: '100%',
+    { widgetType: 'HTML', pageId: '321', text: '<p>Lorem ipsum</p>', name: 'No.4'},
+    { widgetType: 'HEADING', pageId: '321', size: 4, text: 'Lorem ipsum', name: 'No.5'},
+    { widgetType: 'YOUTUBE', pageId: '321', width: '100%',
       url: 'https://www.youtube.com/watch?v=0aA5vzTiBa0', name: 'No.6'},
-    { _id: '789', widgetType: 'HTML', pageId: '321', text: '<p>Lorem ipsum</p>', name: 'No.7'}
+    { widgetType: 'HTML', pageId: '321', text: '<p>Lorem ipsum</p>', name: 'No.7'}
   ];
 
   const multer = require("multer"); // npm install multer --save
@@ -35,28 +35,18 @@ module.exports=function(app) {
 
     widgetModel
       .createWidget(pageId, widget)
-      .then(function(widget) {
+      .then(function(newWidget) {
         console.log("widget created!");
-        res.json(widget);
+        res.json(newWidget);
       }, function(error) {
         if (error) {
           console.log("create widget error" + error);
-          res.statusCode(400).send(error);
+          res.send(error);
         }
       });
   }
 
-  // function getWidgetsForPageId(pageId) {
-  //
-  //   const curWidgets = [];
-  //
-  //   for (let i = 0; i < widgets.length; i++) {
-  //     if (widgets[i].pageId === pageId) {
-  //       curWidgets.push(widgets[i]);
-  //     }
-  //   }
-  //   return curWidgets;
-  // }
+
 
 
   function findAllWidgetsForPage(req, res) {
@@ -69,7 +59,7 @@ module.exports=function(app) {
       }, function(error) {
         if (error) {
           console.log("Find widgets by page id error:" + error);
-          res.statusCode(404).send(error);
+          res.send(error);
         }
       });
   }
@@ -77,13 +67,13 @@ module.exports=function(app) {
 
   function getWidgetById(widgetId){
     widgetModel
-      .findWidgetById( widgetId)
-      .then(function( widget) {
-        console.log("find  widget by id:" +  widget);
-        return  widget;
+      .findWidgetById(widgetId)
+      .then(function(widget) {
+        console.log("find widget by id:" +  widget);
+        return widget;
       }, function(error) {
         if (error) {
-          console.log("Find  widget by id error:" + error);
+          console.log("Find widget by id error:" + error);
           return null;
         }
       });
@@ -95,12 +85,14 @@ module.exports=function(app) {
     res.json(getWidgetById(widgetId));
   }
 
+
+
   function updateWidget(req, res) {
     const widgetId = req.params['widgetId'];
     const newWidget = req.body;
 
     widgetModel
-      .updatePage(widgetId, newWidget)
+      .updateWidget(widgetId, newWidget)
       .then(function(widget) {
         console.log("widget updated!");
         widgetModel
@@ -111,13 +103,13 @@ module.exports=function(app) {
           }, function(error) {
             if (error) {
               console.log("Find widgets by page id error:" + error);
-              res.statusCode(404).send(error);
+              res.send(error);
             }
           });
       }, function(error) {
         if (error) {
           console.log("update pages error" + error);
-          res.statusCode(400).send(error);
+          res.send(error);
         }
       });
   }
@@ -138,13 +130,13 @@ module.exports=function(app) {
           }, function(error) {
             if (error) {
               console.log("Find widgets by page id error:" + error);
-              res.statusCode(404).send(error);
+              res.send(error);
             }
           });
       }, function(error) {
         if (error) {
           console.log("delete page error" + error);
-          res.statusCode(400).send(error);
+          res.send(error);
         }
       });
   }
@@ -188,11 +180,11 @@ module.exports=function(app) {
       .reorderWidget(pageId, startIndex, endIndex)
       .then(function(response) {
         console.log("widgets reordered:" + response);
-        res.sendStatus(200);
+        res.send("widgets reordered");
       }, function(error) {
         if (error) {
           console.log("reorder widget error:" + error);
-          res.statusCode(404).send(error);
+          res.send(error);
         }
       });
   }

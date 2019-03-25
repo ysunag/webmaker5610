@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const websiteSchema = require('./website.schema.server');
 
-const websiteModel = mongoose.model("website",websiteSchema);
+const websiteModel = mongoose.model("Website",websiteSchema);
 const userModel = require("../user/user.model.server");
 
 
@@ -40,13 +40,13 @@ function findAllWebsitesForUser(userId) {
 
 
 function findWebsiteById(id) {
-  return websiteModel.findById(id);
+  return websiteModel.findOne({_id: id});
 }
 
 
 
 function updateWebsite(websiteId,website) {
-  return websiteModel.findByIdAndUpdate(websiteId,website)
+  return websiteModel.findOneAndUpdate({_id: websiteId},website)
     .then(function (responseWebsite) {
       userModel.update(
         { "_id" : responseWebsite.developerId, "websites._id": websiteId },
@@ -61,7 +61,7 @@ function updateWebsite(websiteId,website) {
 
 
 function deleteWebsite(websiteId) {
-  return websiteModel.findByIdAndRemove(websiteId)
+  return websiteModel.findOneAndDelete({_id: websiteId})
     .then(function (responseWebsite) {
       userModel.findOne({
         _id: responseWebsite.developerId
