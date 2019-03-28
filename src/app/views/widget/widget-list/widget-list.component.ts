@@ -3,6 +3,7 @@ import {ActivatedRoute} from '@angular/router';
 import {WidgetService} from '../../../services/widget.service.client';
 import { DomSanitizer } from '@angular/platform-browser';
 import {Widget} from '../../../model/widget.model.client';
+import {PageService} from '../../../services/page.service.client';
 
 
 
@@ -19,7 +20,7 @@ export class WidgetListComponent implements OnInit {
   pid: String;
   widgets: Array<Widget>;
 
-  constructor(private router: ActivatedRoute, private widgetService: WidgetService, private sanitizer: DomSanitizer) {
+  constructor(private router: ActivatedRoute, private widgetService: WidgetService, private pageService: PageService, private sanitizer: DomSanitizer) {
     this.widgets = new Array<Widget>();
   }
 
@@ -28,14 +29,20 @@ export class WidgetListComponent implements OnInit {
       this.uid = params['uid'];
       this.wid = params['wid'];
       this.pid = params['pid'];
-      this.widgetService.findWidgetsByPageId(params['pid']).subscribe((widgets: any) => {
-        if (widgets) {
-          this.widgets = widgets;
+      // this.widgetService.findWidgetsByPageId(params['pid']).subscribe((widgets: any) => {
+      //   if (widgets) {
+      //     this.widgets = widgets;
+      //   }
+      // });
+      this.pageService.findPageById(params['pid']).subscribe((page: any) => {
+        if (page) {
+          this.widgets = page.widgets;
         }
       });
       console.log('user id: ' + this.uid);
       console.log('web id: ' + this.wid);
       console.log('page id: ' + this.pid);
+      console.log(this.widgets);
     });
   }
 

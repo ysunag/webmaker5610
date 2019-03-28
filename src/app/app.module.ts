@@ -32,7 +32,7 @@ import { FlickrImageSearchComponent } from './views/widget/widget-edit/widget-im
 import {FlickrService} from './services/flickr.service.client';
 import { WidgetHtmlComponent } from './views/widget/widget-edit/widget-html/widget-html.component';
 import { WidgetTextComponent } from './views/widget/widget-edit/widget-text/widget-text.component';
-import { QuillModule } from 'ngx-quill'
+import { QuillModule } from 'ngx-quill';
 
 @NgModule({
   declarations: [
@@ -65,7 +65,7 @@ import { QuillModule } from 'ngx-quill'
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    QuillModule
+    QuillModule,
   ],
   providers: [UserService, WebsiteService, PageService, WidgetService, FlickrService],
   bootstrap: [AppComponent]

@@ -25,10 +25,10 @@ export class WidgetEditComponent implements OnInit {
       this.uid = params['uid'];
       this.wid = params['wid'];
       this.pid = params['pid'];
+      console.log('wgid: ' + params['wgid']);
       this.widgetService.findWidgetById(params['wgid']).subscribe((widget: any) => {
-        if (widget) {
           this.widget = widget;
-        }
+          console.log('widget: ' + widget);
       });
       console.log('user id: ' + this.uid);
       console.log('web id: ' + this.wid);

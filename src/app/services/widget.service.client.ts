@@ -22,7 +22,10 @@ export class WidgetService {
 
   createWidget(pageId, widget)   {
     const newWidget = {name: widget.name, widgetType: widget.widgetType, pageId: pageId};
-    return this.http.post(this.baseUrl + '/api/page/' + pageId + '/widget', newWidget);
+    return this.http.post(this.baseUrl + '/api/page/' + pageId + '/widget', newWidget).pipe(
+      map((response) => {
+        return response;
+      }));
   }
 
   findWidgetsByPageId(pageId)  {
@@ -33,6 +36,7 @@ export class WidgetService {
   }
 
   findWidgetById(widgetId)   {
+    console.log('send wgid:' + widgetId);
     return this.http.get<Widget>(this.baseUrl + '/api/widget/' + widgetId).pipe(
       map((response) => {
         return response;

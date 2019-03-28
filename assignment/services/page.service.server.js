@@ -1,10 +1,10 @@
 module.exports=function(app) {
 
-  const pages = [
-    {name: 'Post 1', websiteId: '456', title: 'Lorem'},
-    {name: 'Post 2', websiteId: '456', title: 'Lorem'},
-    {name: 'Post 3', websiteId: '456', title: 'Lorem'}
-  ];
+  // const pages = [
+  //   {name: 'Post 1', websiteId: '456', title: 'Lorem'},
+  //   {name: 'Post 2', websiteId: '456', title: 'Lorem'},
+  //   {name: 'Post 3', websiteId: '456', title: 'Lorem'}
+  // ];
 
   app.post("/api/website/:websiteId/page", createPage);
   app.get("/api/website/:websiteId/page", findAllPagesForWebsite);

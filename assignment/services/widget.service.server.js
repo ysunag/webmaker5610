@@ -1,16 +1,16 @@
 module.exports=function(app) {
 
-  const widgets= [
-    { widgetType: 'HEADING', pageId: '321', size: 2, text: 'GIZMODO', name: 'No.1'},
-    { widgetType: 'HEADING', pageId: '321', size: 4, text: 'Lorem ipsum', name: 'No.2'},
-    { widgetType: 'IMAGE', pageId: '321', width: '100%',
-      url: 'https://justifiedgrid.com/wp-content/uploads/life/biking/137646854.jpg', name: 'No.3'},
-    { widgetType: 'HTML', pageId: '321', text: '<p>Lorem ipsum</p>', name: 'No.4'},
-    { widgetType: 'HEADING', pageId: '321', size: 4, text: 'Lorem ipsum', name: 'No.5'},
-    { widgetType: 'YOUTUBE', pageId: '321', width: '100%',
-      url: 'https://www.youtube.com/watch?v=0aA5vzTiBa0', name: 'No.6'},
-    { widgetType: 'HTML', pageId: '321', text: '<p>Lorem ipsum</p>', name: 'No.7'}
-  ];
+  // const widgets= [
+  //   { widgetType: 'HEADING', pageId: '321', size: 2, text: 'GIZMODO', name: 'No.1'},
+  //   { widgetType: 'HEADING', pageId: '321', size: 4, text: 'Lorem ipsum', name: 'No.2'},
+  //   { widgetType: 'IMAGE', pageId: '321', width: '100%',
+  //     url: 'https://justifiedgrid.com/wp-content/uploads/life/biking/137646854.jpg', name: 'No.3'},
+  //   { widgetType: 'HTML', pageId: '321', text: '<p>Lorem ipsum</p>', name: 'No.4'},
+  //   { widgetType: 'HEADING', pageId: '321', size: 4, text: 'Lorem ipsum', name: 'No.5'},
+  //   { widgetType: 'YOUTUBE', pageId: '321', width: '100%',
+  //     url: 'https://www.youtube.com/watch?v=0aA5vzTiBa0', name: 'No.6'},
+  //   { widgetType: 'HTML', pageId: '321', text: '<p>Lorem ipsum</p>', name: 'No.7'}
+  // ];
 
   const multer = require("multer"); // npm install multer --save
   const upload = multer({ dest: __dirname+'/../../src/assets/uploads' });
@@ -32,11 +32,14 @@ module.exports=function(app) {
   function createWidget(req, res){
     const pageId  = req.params['pageId'];
     const widget = req.body;
-
+    console.log("creating widget!!!!!!!!!!!!!");
+    console.log("pageID is" + pageId.toString());
+    console.log("widget:" + widget.toString());
     widgetModel
       .createWidget(pageId, widget)
       .then(function(newWidget) {
         console.log("widget created!");
+        console.log("new widget is" + newWidget.toString());
         res.json(newWidget);
       }, function(error) {
         if (error) {
@@ -65,24 +68,35 @@ module.exports=function(app) {
   }
 
 
-  function getWidgetById(widgetId){
+  // function getWidgetById(widgetId){
+  //   widgetModel
+  //     .findWidgetById(widgetId)
+  //     .then(function(widget) {
+  //       console.log("find widget by id:" +  widget);
+  //       return widget;
+  //     }, function(error) {
+  //       if (error) {
+  //         console.log("Find widget by id error:" + error);
+  //         return null;
+  //       }
+  //     });
+  // }
+  //
+
+  function findWidgetById(req, res) {
+    const widgetId = req.params['widgetId'];
+
     widgetModel
       .findWidgetById(widgetId)
       .then(function(widget) {
         console.log("find widget by id:" +  widget);
-        return widget;
+        res.json(widget);
       }, function(error) {
         if (error) {
           console.log("Find widget by id error:" + error);
           return null;
         }
       });
-  }
-
-
-  function findWidgetById(req, res) {
-    const widgetId = req.params['widgetId'];
-    res.json(getWidgetById(widgetId));
   }
 
 
@@ -120,22 +134,17 @@ module.exports=function(app) {
     const widgetId = req.params['widgetId'];
 
     widgetModel.deleteWidget(widgetId)
-      .then(function(widget) {
+      .then(function(page) {
         console.log("widget removed!");
-        widgetModel
-          .findAllWidgetsForPage(widget.pageId)
-          .then(function(widgets) {
-            console.log("find widgets by page id:" + widgets);
-            res.json(widgets);
-          }, function(error) {
-            if (error) {
-              console.log("Find widgets by page id error:" + error);
-              res.send(error);
-            }
-          });
+        // widgetModel
+        //   .findAllWidgetsForPage(widget.pageId)
+        //   .then(function(widgets) {
+        //     console.log("find widgets by page id:" + widgets);
+        //    res.json(widgets);
+          res.json(page.widgets);
       }, function(error) {
         if (error) {
-          console.log("delete page error" + error);
+          console.log("delete widget error" + error);
           res.send(error);
         }
       });
@@ -162,12 +171,30 @@ module.exports=function(app) {
     const size = myFile.size;
     const mimetype = myFile.mimetype;
 
-    const widget = getWidgetById(widgetId);
-    widget.url = '/uploads/'+filename;
+   // const widget = getWidgetById(widgetId);
 
-    const callbackUrl = "/user/"+userId + "/website/" + websiteId + "/page/" + pageId + "/widget/" + widgetId;
 
-    res.redirect(callbackUrl);
+    widgetModel
+      .findWidgetById(widgetId)
+      .then(function(widget) {
+        console.log("find widget by id:" +  widget);
+        widget.url = '/uploads/'+filename;
+        const callbackUrl = "/user/"+userId + "/website/" + websiteId + "/page/" + pageId + "/widget/" + widgetId;
+        res.redirect(callbackUrl);
+      }, function(error) {
+        if (error) {
+          console.log("Find widget by id error:" + error);
+          return null;
+        }
+      });
+
+
+
+    // widget.url = '/uploads/'+filename;
+    //
+    // const callbackUrl = "/user/"+userId + "/website/" + websiteId + "/page/" + pageId + "/widget/" + widgetId;
+    //
+    // res.redirect(callbackUrl);
   }
 
 
@@ -175,6 +202,7 @@ module.exports=function(app) {
   function reorderWidgets(req,res) {
     const startIndex = parseInt(req.query["start"]);
     const endIndex = parseInt(req.query["end"]);
+    const pageId = req.params['pageId'];
 
     widgetModel
       .reorderWidget(pageId, startIndex, endIndex)

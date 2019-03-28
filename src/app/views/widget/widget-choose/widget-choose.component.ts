@@ -15,10 +15,11 @@ export class WidgetChooseComponent implements OnInit {
   uid: String;
   wid: String;
   pid: Page;
+  wgid: String;
   widget: Widget;
 
   constructor(private router: ActivatedRoute, private widgetService: WidgetService) {
-    this.widget = new Widget('', '', 'HTML', '');
+    this.widget = new Widget('', '', 'HEADING', '');
   }
 
   ngOnInit() {
@@ -30,9 +31,12 @@ export class WidgetChooseComponent implements OnInit {
       console.log('web id: ' + this.wid);
       console.log('page id: ' + this.pid);
       this.widget.size = 1;
-      this.widgetService.createWidget(this.pid, this.widget).subscribe((widget: any) => {
+      this.widgetService.createWidget(this.pid, this.widget).subscribe((widget: Widget) => {
+        console.log(widget.toString());
         if (widget) {
+          console.log(widget);
           this.widget = widget;
+          this.wgid = widget._id.toString();
         }
       });
     });
@@ -40,8 +44,9 @@ export class WidgetChooseComponent implements OnInit {
 
   updateWidgetType(widgetType) {
     this.widget.widgetType = widgetType;
+    console.log('widget type is ' + this.widget.widgetType);
     this.router.params.subscribe(params => {
-      console.log('going to update widget: ' + this.widget);
+      console.log('going to update widget: id = ' + this.widget._id.toString());
       return this.widgetService.updateWidget(this.widget._id, this.widget).subscribe((widgets: any) => {
       });
     });

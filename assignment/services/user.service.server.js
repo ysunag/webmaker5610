@@ -11,9 +11,9 @@ module.exports=function(app) {
 
   app.post("/api/user", createUser);
   app.put("/api/user/:userId", updateUserById);
-  app.get("/api/user?username=username", findUserByUsername);
   app.get("/api/user/:userId", findUserById);
   app.get("/api/user?username=username&password=password", findUserByCred);
+  app.get("/api/user?username=username", findUserByUsername);
   app.delete("/api/user/:userId", deleteUser);
 
   const userModel = require('../model/user/user.model.server');
@@ -70,20 +70,38 @@ module.exports=function(app) {
   }
 
   function findUserByCred(req, res){
-    const username = req.query['username'];
-    const password  = req.query['password'];
+    const username = req.query.username;
+    const password  = req.query.password;
+    console.log("find user by Cred at server service:");
+    console.log(username);
+    console.log(password);
 
     userModel
       .findByCredential(username, password)
-      .then(function(user) {
-        console.log("find user by credentials:" + user);
-        res.json(user);
-      }, function(error) {
-        if (error) {
-          console.log("Find user by credentials error:" + error);
-          res.statusCode(404).send(error);
+      .exec(
+      function (err,user) {
+        console.log(user);
+        console.log(err);
+        if(err){
+          res.sendStatus(400).send(err);
         }
-      });
+        res.json(user);
+      }
+    );
+
+
+
+
+
+      // .then(function(user) {
+      //   console.log("find user by credentials:" + user);
+      //   res.json(user);
+      // }, function(error) {
+      //   if (error) {
+      //     console.log("Find user by credentials error:" + error);
+      //     res.statusCode(404).send(error);
+      //   }
+      // });
   }
 
 

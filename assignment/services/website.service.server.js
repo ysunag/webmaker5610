@@ -1,23 +1,23 @@
 module.exports=function(app) {
 
 
-  const websites = [
-
-    {name: 'Facebook', developerId: '456', description: 'Lorem' },
-
-    {name: 'Tweeter', developerId: '456', description: 'Lorem' },
-
-    {name: 'Gizmodo', developerId: '456', description: 'Lorem' },
-
-    {name: 'Go', developerId: '123', description: 'Lorem' },
-
-    {name: 'Tic Tac Toe', developerId: '123', description: 'Lorem' },
-
-    {name: 'Checkers', developerId: '123', description: 'Lorem' },
-
-    {name: 'Chess', developerId: '234', description: 'Lorem' }
-
-  ];
+  // const websites = [
+  //
+  //   {name: 'Facebook', developerId: '456', description: 'Lorem' },
+  //
+  //   {name: 'Tweeter', developerId: '456', description: 'Lorem' },
+  //
+  //   {name: 'Gizmodo', developerId: '456', description: 'Lorem' },
+  //
+  //   {name: 'Go', developerId: '123', description: 'Lorem' },
+  //
+  //   {name: 'Tic Tac Toe', developerId: '123', description: 'Lorem' },
+  //
+  //   {name: 'Checkers', developerId: '123', description: 'Lorem' },
+  //
+  //   {name: 'Chess', developerId: '234', description: 'Lorem' }
+  //
+  // ];
 
 
 
