@@ -24,7 +24,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // Point static path to dist -- For building -- REMOVE
 app.use(express.static(path.join(__dirname, 'dist/webmaker5610')));
 app.use(express.static(path.join(__dirname, 'src/assets')));
-
+//
 // CORS
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -39,10 +39,11 @@ app.use(function(req, res, next) {
 const port = process.env.PORT || '3200';
 app.set('port', port);
 
-// app.get('*', function (req, res) {
-//   // res.sendFile(path.join(__dirname, 'dist/index.html'));
-//   res.sendFile(path.join(__dirname, 'dist/webmaker5610/index.html'));
-// });
+require('./assignment/app')(app);
+
+app.get('*', function (req, res) {
+  res.sendFile(path.join(__dirname, 'dist/webmaker5610/index.html'));
+});
 
 
 // Create HTTP server
@@ -60,4 +61,6 @@ server.listen( port , () => console.log('Running on port 3200'));
 // }
 
 
-require('./assignment/app')(app);
+
+
+

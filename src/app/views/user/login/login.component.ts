@@ -25,6 +25,8 @@ export class LoginComponent implements OnInit {
   login() {
     const username = this.loginForm.value.username;
     const password = this.loginForm.value.password;
+    console.log('username:' + username);
+    console.log('password:' + password);
     this.userService.findUserByCredentials(username, password)
       .subscribe((user: User) => {
         if (user) {
@@ -38,6 +40,8 @@ export class LoginComponent implements OnInit {
   }
 
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log('init login page');
+  }
 
 }

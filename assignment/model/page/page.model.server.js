@@ -46,7 +46,7 @@ function findPageById(id) {
 
 
 function updatePage(pageId,page) {
-  return pageModel.findOneAndUpdate({_id: pageId},page)
+  return pageModel.findOneAndUpdate({_id: pageId},page, {new: true})
     .then(function (responsePage) {
       websiteModel.update(
         { "_id" : responsePage.websiteId, "pages._id": pageId },
@@ -67,14 +67,16 @@ function deletePage(pageId) {
         _id: responsePage.websiteId
       })
         .then(function (website) {
-          if (website) {
-            website.pages = website.pages.filter(function (page) {
-              return page._id !== pageId
-            });
-            website.save();
+          // if (website) {
+          //   website.pages = website.pages.filter(function (page) {
+          //     return page._id !== pageId
+          //   });
+          //   website.save();
+          website.pages.pull({ _id: pageId });
+          website.save();
             console.log('page removed from website');
             return responsePage;
-          }
+          //}
         })
         .catch(function (err) {
           console.log("remove page from website error:" + err);

@@ -12,8 +12,7 @@ module.exports=function(app) {
   app.post("/api/user", createUser);
   app.put("/api/user/:userId", updateUserById);
   app.get("/api/user/:userId", findUserById);
-  app.get("/api/user?username=username&password=password", findUserByCred);
-  app.get("/api/user?username=username", findUserByUsername);
+  app.get("/api/user", findUser);
   app.delete("/api/user/:userId", deleteUser);
 
   const userModel = require('../model/user/user.model.server');
@@ -39,20 +38,20 @@ module.exports=function(app) {
   }
 
 
-  function findUserByUsername(req, res) {
-    const userName = req.params['username'];
-    userModel
-      .findUserByUserName(userName)
-      .then(function(user) {
-        console.log("find user by username:" + user);
-        res.json(user);
-      }, function(error) {
-        if (error) {
-          console.log("Find user by username error:" + error);
-          res.statusCode(404).send(error);
-        }
-      });
-  }
+  // function findUserByUsername(req, res) {
+  //   const userName = req.params['username'];
+  //   userModel
+  //     .findUserByUserName(userName)
+  //     .then(function(user) {
+  //       console.log("find user by username:" + user);
+  //       res.json(user);
+  //     }, function(error) {
+  //       if (error) {
+  //         console.log("Find user by username error:" + error);
+  //         res.statusCode(404).send(error);
+  //       }
+  //     });
+  // }
 
   function findUserById(req, res){
     const userId = req.params['userId'];
@@ -69,25 +68,25 @@ module.exports=function(app) {
       });
   }
 
-  function findUserByCred(req, res){
-    const username = req.query.username;
-    const password  = req.query.password;
-    console.log("find user by Cred at server service:");
-    console.log(username);
-    console.log(password);
-
-    userModel
-      .findByCredential(username, password)
-      .exec(
-      function (err,user) {
-        console.log(user);
-        console.log(err);
-        if(err){
-          res.sendStatus(400).send(err);
-        }
+  function findUser(req, res) {
+    const username = req.query["username"];
+    const password = req.query["password"];
+    if (username && password) {
+      const promise = userModel.findByCredential(username, password);
+      promise.then(function (user) {
         res.json(user);
-      }
-    );
+        //console.log(user);
+      })
+      return;
+    } else if (username) {
+      userModel.findUserByUserName(username)
+        .then(function (user) {
+          res.json(user);
+        })
+      return;
+    }
+    res.json(users);
+  }
 
 
 
@@ -102,7 +101,7 @@ module.exports=function(app) {
       //     res.statusCode(404).send(error);
       //   }
       // });
-  }
+
 
 
   function updateUserById(req, res) {

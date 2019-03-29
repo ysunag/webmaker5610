@@ -46,7 +46,7 @@ function findWebsiteById(id) {
 
 
 function updateWebsite(websiteId,website) {
-  return websiteModel.findOneAndUpdate({_id: websiteId},website)
+  return websiteModel.findOneAndUpdate({_id: websiteId},website, {new: true})
     .then(function (responseWebsite) {
       userModel.update(
         { "_id" : responseWebsite.developerId, "websites._id": websiteId },
@@ -67,14 +67,16 @@ function deleteWebsite(websiteId) {
         _id: responseWebsite.developerId
       })
         .then(function (user) {
-          if (user) {
-            user.webistes = user.webistes.filter(function (website) {
-              return website._id !== websiteId
-            })
-            user.save();
+          // if (user) {
+          //   user.webistes = user.webistes.filter(function (website) {
+          //     return website._id !== websiteId
+          //   })
+          //   user.save();
+          user.websites.pull({ _id: websiteId });
+          user.save();
             console.log('website removed from user');
             return responseWebsite;
-          }
+          //}
         })
         .catch(function (err) {
           console.log("remove website from user error:" + err);

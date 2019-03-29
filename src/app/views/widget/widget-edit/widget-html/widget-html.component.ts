@@ -10,6 +10,9 @@ import {Widget} from '../../../../model/widget.model.client';
   styleUrls: ['./widget-html.component.css']
 })
 export class WidgetHtmlComponent implements OnInit {
+  error: string;
+  alert: string;
+  flag = false;
   uid: String;
   wid: String;
   pid: String;
@@ -20,6 +23,9 @@ export class WidgetHtmlComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.error = 'Enter the name of the widget';
+    this.alert = '* Enter the widget name';
+
     this.router.params.subscribe(params => {
       this.uid = params['uid'];
       this.wid = params['wid'];
@@ -28,7 +34,8 @@ export class WidgetHtmlComponent implements OnInit {
         if (widget) {
           this.widget = widget;
         }
-      });
+      },
+        (error: any) => console.log(error));
       console.log('user id: ' + this.uid);
       console.log('widget id: ' + this.widget._id);
       console.log('web id: ' + this.wid);
@@ -39,7 +46,8 @@ export class WidgetHtmlComponent implements OnInit {
     console.log(this.widget);
     this.router.params.subscribe(params => {
       return this.widgetService.updateWidget(this.widget._id, this.widget)
-        .subscribe((widget: any) => {});
+        .subscribe((widget: any) => {},
+          (error: any) => console.log(error));
     });
   }
 
@@ -47,7 +55,8 @@ export class WidgetHtmlComponent implements OnInit {
     console.log(this.widget);
     this.router.params.subscribe(params => {
       return this.widgetService.deleteWidget(this.widget._id)
-        .subscribe((widgets: any) => {});
+        .subscribe((widgets: any) => {},
+          (error: any) => console.log(error));
     });
   }
 

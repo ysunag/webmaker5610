@@ -51,7 +51,7 @@ function findWidgetById(id) {
 
 
 function updateWidget(widgetId, widget) {
-  return widgetModel.findOneAndUpdate({_id: widgetId},widget)
+  return widgetModel.findOneAndUpdate({_id: widgetId},widget, {new:true})
     .then(function (responseWidget) {
       pageModel.updateOne(
         { "_id" : responseWidget.pageId, "widgets._id": widgetId },
@@ -72,14 +72,8 @@ function deleteWidget(widgetId) {
         _id: responseWidget.pageId
       })
         .then(function (page) {
-          if (page) {
-            page.widgets = page.widgets.filter(function (widget) {
-              return widget._id !== widgetId
-            })
-            page.save();
-            console.log('widget removed from page');
-            return page;
-          }
+          page.widgets.pull({ _id: widgetId });
+          page.save();
         })
         .catch(function (err) {
           console.log("remove widget from page error:" + err);

@@ -179,6 +179,12 @@ module.exports=function(app) {
       .then(function(widget) {
         console.log("find widget by id:" +  widget);
         widget.url = '/uploads/'+filename;
+
+        widgetModel
+          .updateWidget(widgetId, widget)
+          .then(function(widget) {
+            res.send("update url");
+          })
         const callbackUrl = "/user/"+userId + "/website/" + websiteId + "/page/" + pageId + "/widget/" + widgetId;
         res.redirect(callbackUrl);
       }, function(error) {
