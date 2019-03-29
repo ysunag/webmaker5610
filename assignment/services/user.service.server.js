@@ -92,18 +92,6 @@ module.exports=function(app) {
 
 
 
-      // .then(function(user) {
-      //   console.log("find user by credentials:" + user);
-      //   res.json(user);
-      // }, function(error) {
-      //   if (error) {
-      //     console.log("Find user by credentials error:" + error);
-      //     res.statusCode(404).send(error);
-      //   }
-      // });
-
-
-
   function updateUserById(req, res) {
     const userId = req.params['userId'];
     const user = req.body;
