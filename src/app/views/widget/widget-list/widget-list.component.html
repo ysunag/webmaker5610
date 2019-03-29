@@ -72,17 +72,20 @@
 
 
 
-      <div *ngSwitchCase="'YOUTUBE'" class="row youtube-widget">
-        <div class="embed-responsive embed-responsive-16by9">
+      <div *ngSwitchCase="'YOUTUBE'" >
+        <div class="youtube-widget embed-responsive embed-responsive-16by9">
           <iframe class="embed-responsive-item" [src]="widget.url | safe" [ngStyle]="{'width': widget.width}" allowfullscreen></iframe>
         </div>
-        <div class="ml-auto">
-          <a routerLink="/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget/{{widget._id}}">
-            <span class="fas fa-cog cl-text-blue cl-widget-list-icons"></span>
-          </a>
-          <a routerLink="#">
-            <span class="fas fa-bars cl-text-blue cl-widget-list-icons"></span>
-          </a>
+        <div class="row">
+          <p></p>
+          <div class="ml-auto">
+            <a routerLink="/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget/{{widget._id}}">
+              <span class="fas fa-cog cl-text-blue cl-widget-list-icons"></span>
+            </a>
+            <a routerLink="#">
+              <span class="fas fa-bars cl-text-blue cl-widget-list-icons"></span>
+            </a>
+          </div>
         </div>
       </div>
 
