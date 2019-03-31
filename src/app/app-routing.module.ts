@@ -13,13 +13,14 @@ import {WidgetListComponent} from './views/widget/widget-list/widget-list.compon
 import {WidgetChooseComponent} from './views/widget/widget-choose/widget-choose.component';
 import {WidgetEditComponent} from './views/widget/widget-edit/widget-edit.component';
 import {FlickrImageSearchComponent} from './views/widget/widget-edit/widget-image/flickr-image-search/flickr-image-search.component';
+import {AuthGuard} from './services/auth-gard.service';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'user/:uid', component: ProfileComponent },
+  { path: 'user/:uid', component: ProfileComponent, canActivate: [AuthGuard]},
   { path: 'register', component: RegisterComponent },
-  { path: 'profile', component: ProfileComponent },
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
   { path: 'user/:uid/website', component: WebsiteListComponent },
   { path: 'user/:uid/website/new', component: WebsiteNewComponent },
   { path: 'user/:uid/website/:wid', component: WebsiteEditComponent },

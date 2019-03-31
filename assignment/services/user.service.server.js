@@ -9,13 +9,97 @@ module.exports=function(app) {
   // ];
 
 
+  const userModel = require('../model/user/user.model.server');
+  const passport = require('passport');
+  const LocalStrategy = require('passport-local').Strategy;
+
+
+  passport.use(new LocalStrategy(localStrategy));
+  passport.serializeUser(serializeUser);
+  passport.deserializeUser(deserializeUser);
+
+
   app.post("/api/user", createUser);
   app.put("/api/user/:userId", updateUserById);
   app.get("/api/user/:userId", findUserById);
   app.get("/api/user", findUser);
   app.delete("/api/user/:userId", deleteUser);
+  app.post  ('/api/login', passport.authenticate('local'), login);
+  app.post('/api/logout', logout);
+  app.post ('/api/register', register);
+  app.post ('/api/loggedin', loggedin);
 
-  const userModel = require('../model/user/user.model.server');
+
+  function serializeUser(user, done) {
+    done(null, user);
+  }
+
+
+  function deserializeUser(user, done) {
+    userModel
+      .findUserById(user._id)
+      .then(
+        function(user){
+          done(null, user);
+        },
+        function(err){
+          done(err, null);
+        }
+      );
+  }
+
+
+  function localStrategy(username, password, done) {
+    userModel
+      .findByCredential(username, password)
+      .then(
+        function(user) {
+          if(user && user.username === username && user.password === password) {
+            return done(null, user);
+          } else {
+            return done(null, false);
+          }
+        },
+        function(err) {
+          if (err) { return done(err); }
+        }
+      );
+  }
+
+
+  function login(req, res) {
+    const user = req.user;
+    res.json(user);
+  }
+
+
+  function logout(req, res) {
+    req.logOut();
+    // res.sendStatus(200);
+  }
+
+  function register (req, res) {
+    const user = req.body;
+    userModel
+      .createUser(user)
+      .then(
+        function(user){
+          if(user){
+            req.login(user, function(err) {
+              if(err) {
+                res.status(400).send(err);
+              } else {
+                res.json(user);
+              }
+            });
+          }
+        }
+      );
+  }
+
+  function loggedin(req, res) {
+    res.send(req.isAuthenticated() ? req.user : '0');
+  }
 
 
 

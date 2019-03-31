@@ -33,6 +33,8 @@ import {FlickrService} from './services/flickr.service.client';
 import { WidgetHtmlComponent } from './views/widget/widget-edit/widget-html/widget-html.component';
 import { WidgetTextComponent } from './views/widget/widget-edit/widget-text/widget-text.component';
 import { QuillEditorModule } from 'ngx-quill-editor';
+import {SharedService} from './services/shared.service.client';
+import {AuthGuard} from './services/auth-gard.service';
 
 @NgModule({
   declarations: [
@@ -67,7 +69,7 @@ import { QuillEditorModule } from 'ngx-quill-editor';
     FormsModule,
     QuillEditorModule,
   ],
-  providers: [UserService, WebsiteService, PageService, WidgetService, FlickrService],
+  providers: [UserService, WebsiteService, PageService, WidgetService, FlickrService, SharedService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

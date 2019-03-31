@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {UserService} from '../../../services/user.service.client';
 import {User} from '../../../model/user.model.client';
 
@@ -17,7 +17,7 @@ export class ProfileComponent implements OnInit {
   userId: string;
   username: String;
 
-  constructor(private router: ActivatedRoute, private userService: UserService) {
+  constructor(private activeRouter: ActivatedRoute, private userService: UserService, private router: Router) {
     this.user = new User('', '', '', '', '', '');
   }
 
@@ -26,7 +26,7 @@ export class ProfileComponent implements OnInit {
     console.log(this.user['firstName']);
     console.log(this.user['lastName']);
     console.log(this.user['email']);
-    this.router.params.subscribe(params => {
+    this.activeRouter.params.subscribe(params => {
       return this.userService.updateUser(this.user['_id'], this.user)
         .subscribe((user: any) => {
             this.user = user;
@@ -36,7 +36,7 @@ export class ProfileComponent implements OnInit {
 
   DeleteUser() {
     console.log('delete user');
-    this.router.params.subscribe(params => {
+    this.activeRouter.params.subscribe(params => {
       return this.userService.deleteUser(this.user['_id'])
         .subscribe((res: any) => {
           console.log(res);
@@ -44,9 +44,17 @@ export class ProfileComponent implements OnInit {
     });
   }
 
+
+  Logout() {
+    this.userService.logout()
+      .subscribe(
+        (data: any) => this.router.navigate(['/login'])
+      );
+  }
+
   ngOnInit() {
 
-    this.router.params.subscribe(params => {
+    this.activeRouter.params.subscribe(params => {
       this.userId = params['uid'];
       console.log(this.userId);
 

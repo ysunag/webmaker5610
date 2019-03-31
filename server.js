@@ -7,8 +7,8 @@ const bodyParser = require('body-parser');
 const app = express();
 const mongoose = require('mongoose');
 
-// const connectionString = 'mongodb://127.0.0.1:27017/webmaker5610';
-const connectionString = 'mongodb://webmaker5610:webmaker5610@ds213705.mlab.com:13705/heroku_z8v8k6tg';
+ const connectionString = 'mongodb://127.0.0.1:27017/webmaker5610';
+// const connectionString = 'mongodb://webmaker5610:webmaker5610@ds213705.mlab.com:13705/heroku_z8v8k6tg';
 mongoose.Promise = global.Promise;
 const client = mongoose.connect( connectionString, { useNewUrlParser: true });
 
@@ -32,6 +32,17 @@ app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
   next();
 });
+
+
+const cookieParser = require('cookie-parser');
+const session      = require('express-session');
+const passport = require('passport');
+
+app.use(cookieParser());
+app.use(session({ secret: process.env.SESSION_SECRET }));
+app.use(passport.initialize());
+app.use(passport.session());
+
 
 
 
