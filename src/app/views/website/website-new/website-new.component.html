@@ -20,7 +20,7 @@
       <a class="cl-text-white navbar-brand cl-text-bold" routerLink="#">
         New Websites
       </a>
-      <a (click)="CreateWebsite()" routerLink="/user/{{uid}}/website" class="navbar-brand cl-text-white ml-auto">
+      <a (click)="CreateWebsite()" routerLink="#" class="navbar-brand cl-text-white ml-auto">
         <i class="fas fa-check"></i>
       </a>
 
@@ -38,10 +38,16 @@
     </ul>
   </div>
   <div class="col-sm-8">
+    <div *ngIf="errorFlag" class="alert alert-danger">
+      {{errorMsg}}
+    </div>
     <form class="cl-text-padding">
       <div class="form-group">
         <label for="website-name">Name</label>
-        <input [(ngModel)]="website.name" name="website-name" type="text" class="form-control" id="website-name" placeholder="Blogger">
+        <input [(ngModel)]="website.name" name="website-name" type="text" class="form-control" id="website-name" placeholder="Blogger" required #websiteName="ngModel">
+        <span class="help-block" *ngIf="!websiteName.valid && websiteName.touched">
+          Please enter website name!
+        </span>
       </div>
       <div class="form-group">
         <label for="website-description">Description</label>

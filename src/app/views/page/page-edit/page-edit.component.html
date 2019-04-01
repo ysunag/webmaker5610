@@ -8,7 +8,7 @@
         Edit Page
       </a>
     </div>
-    <a (click)="UpdatePage()" routerLink="/user/{{uid}}/website/{{wid}}/page" class="navbar-brand cl-text-black float-right cl-icon-padding">
+    <a (click)="UpdatePage()" routerLink="#" class="navbar-brand cl-text-black float-right cl-icon-padding">
       <i class="fas fa-check"></i>
     </a>
   </div>
@@ -16,11 +16,17 @@
 
 
 <div class="container cl-container-left-padding">
+  <div *ngIf="errorFlag" class="alert alert-danger">
+    {{errorMsg}}
+  </div>
   <form class="cl-text-padding">
     <div class="form-group">
       <label for="page-name">Name</label>
-      <input [(ngModel)]="page.name" name="page-name" type="text" class="form-control" id="page-name" placeholder="Page Name">
+      <input [(ngModel)]="page.name" name="page-name" type="text" class="form-control" id="page-name" placeholder="Page Name" required #pageName="ngModel">
     </div>
+    <span class="help-block" *ngIf="!pageName.valid && pageName.touched">
+          Please enter page name!
+    </span>
     <div class="form-group">
       <label for="page-title">Title</label>
       <input [(ngModel)]="page.title" name="page-title" type="text" class="form-control" id="page-title" placeholder="Page Title">

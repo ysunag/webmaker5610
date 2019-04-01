@@ -8,7 +8,7 @@
         Widgets Edit
       </a>
     </div>
-    <a (click)="UpdateWidget()" routerLink="/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget" class="navbar-brand cl-text-black float-right cl-icon-padding">
+    <a (click)="UpdateWidget()" routerLink="#" class="navbar-brand cl-text-black float-right cl-icon-padding">
       <i class="fas fa-check"></i>
     </a>
   </div>
@@ -16,11 +16,17 @@
 
 
 <div class="container">
+  <div *ngIf="errorFlag" class="alert alert-danger">
+    {{errorMsg}}
+  </div>
   <form>
     <div class="form-group">
       <label for="heading-name">Name</label>
-      <input [(ngModel)]="widget.name" name="widget-name" type="text" class="form-control" id="heading-name" placeholder="Name">
+      <input [(ngModel)]="widget.name" name="widget-name" type="text" class="form-control" id="heading-name" placeholder="Name" required #widgetName="ngModel">
     </div>
+    <span class="help-block" *ngIf="!widgetName.valid && widgetName.touched">
+          Please enter widget name!
+    </span>
     <div class="form-group">
       <label for="heading-text">Text</label>
       <input [(ngModel)]="widget.text" name="widget-text" type="text" class="form-control" id="heading-text" placeholder="Text">

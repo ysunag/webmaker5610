@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {WebsiteService} from '../../../services/website.service.client';
 import {Website} from '../../../model/website.model.client';
 
@@ -13,21 +13,33 @@ export class WebsiteNewComponent implements OnInit {
   website: Website = new Website('', '', '', '');
   websites: Array<Website>;
 
-  constructor(private router: ActivatedRoute, private websiteService: WebsiteService ) {}
+  errorFlag: boolean;
+  errorMsg = 'Invalid website name!';
+
+  constructor(private activateRouter: ActivatedRoute, private websiteService: WebsiteService, private router: Router ) { this.errorFlag = false; }
 
   CreateWebsite() {
     console.log(this.website.name);
     console.log(this.website.description);
-    this.router.params.subscribe(params => {
-      return this.websiteService.createWebsite(this.uid, this.website)
-        .subscribe((websites: any) => {
-          this.websites = websites;
-        });
-    });
+    if (this.website.name.length < 1) {
+      this.errorFlag = true;
+    } else {
+        return this.websiteService.createWebsite(this.uid, this.website)
+          .subscribe((websites: any) => {
+            this.websites = websites;
+            this.router.navigate(['/user', this.uid, 'website']);
+          }, (error) => {
+            if (error) {
+              this.errorMsg = error;
+              console.log(error);
+              this.errorFlag = true;
+            }
+          });
+    }
   }
 
   ngOnInit() {
-    this.router.params.subscribe(params => {
+    this.activateRouter.params.subscribe(params => {
       this.uid = params['uid'];
       this.websiteService.findWebsitesByUser(params['uid']).subscribe((websites: any) => {
         if (websites) {

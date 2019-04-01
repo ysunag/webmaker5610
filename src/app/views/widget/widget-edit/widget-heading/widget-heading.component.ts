@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {WidgetService} from '../../../../services/widget.service.client';
 import {Widget} from '../../../../model/widget.model.client';
 
@@ -15,12 +15,15 @@ export class WidgetHeadingComponent implements OnInit {
   pid: String;
   widget: Widget;
 
-  constructor(private router: ActivatedRoute, private widgetService: WidgetService) {
+  errorFlag: boolean;
+  errorMsg = 'Invalid widget name!';
+
+  constructor(private activeRouter: ActivatedRoute, private widgetService: WidgetService, private router: Router) {
     this.widget = new Widget('', '', '', '');
   }
 
   ngOnInit() {
-    this.router.params.subscribe(params => {
+    this.activeRouter.params.subscribe(params => {
       this.uid = params['uid'];
       this.wid = params['wid'];
       this.pid = params['pid'];
@@ -39,17 +42,31 @@ export class WidgetHeadingComponent implements OnInit {
     console.log(this.widget.name);
     console.log(this.widget.text);
     console.log(this.widget.size);
-    this.router.params.subscribe(params => {
-      return this.widgetService.updateWidget(this.widget._id, this.widget)
-        .subscribe((widget: any) => {});
-    });
+    if (this.widget.name.length < 1 ) {
+      this.errorFlag = true;
+    } else {
+      this.activeRouter.params.subscribe(params => {
+        return this.widgetService.updateWidget(this.widget._id, this.widget)
+          .subscribe((widget: any) => {
+              this.router.navigate(['/user', this.uid, 'website' , this.wid, 'page', this.pid, 'widget']);
+            }
+            ,
+            (error) => {
+              if (error) {
+                this.errorMsg = error;
+                console.log(error);
+                this.errorFlag = true;
+              }
+            });
+      });
+    }
   }
 
   DeleteWidget() {
     console.log(this.widget.name);
     console.log(this.widget.text);
     console.log(this.widget.size);
-    this.router.params.subscribe(params => {
+    this.activeRouter.params.subscribe(params => {
       return this.widgetService.deleteWidget(this.widget._id)
         .subscribe((widgets: any) => {});
     });
