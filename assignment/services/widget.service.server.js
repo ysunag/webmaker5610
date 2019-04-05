@@ -136,12 +136,11 @@ module.exports=function(app) {
     widgetModel.deleteWidget(widgetId)
       .then(function(page) {
         console.log("widget removed!");
-        // widgetModel
-        //   .findAllWidgetsForPage(widget.pageId)
-        //   .then(function(widgets) {
-        //     console.log("find widgets by page id:" + widgets);
-        //    res.json(widgets);
-          res.json(page.widgets);
+        widgetModel
+          .findAllWidgetsForPage(widget.pageId)
+          .then(function(widgets) {
+            console.log("find widgets by page id:" + widgets);
+           res.json(widgets);
       }, function(error) {
         if (error) {
           console.log("delete widget error" + error);
