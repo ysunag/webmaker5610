@@ -140,7 +140,13 @@ module.exports=function(app) {
           .findAllWidgetsForPage(widget.pageId)
           .then(function(widgets) {
             console.log("find widgets by page id:" + widgets);
-           res.json(widgets);
+            res.json(widgets);
+          }, function(error) {
+              if (error) {
+                console.log("find widgets by page id" + error);
+                res.send(error);
+              }
+            });
       }, function(error) {
         if (error) {
           console.log("delete widget error" + error);

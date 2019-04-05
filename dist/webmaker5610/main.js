@@ -2335,7 +2335,7 @@ var FlickrImageSearchComponent = /** @class */ (function () {
             .subscribe(function (data) {
             var result = data;
             if (result) {
-                _this.router.navigate(['/#/website/' + _this.wid + '/page/' + _this.pid + '/widget/' + _this.widget._id]);
+                _this.router.navigate(['/website/', _this.wid, 'page', _this.pid, 'widget', _this.widget._id]);
             }
             else {
                 _this.error = 'failed!';
