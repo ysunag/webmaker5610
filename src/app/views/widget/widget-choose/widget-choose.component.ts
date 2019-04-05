@@ -11,8 +11,6 @@ import {Widget} from '../../../model/widget.model.client';
   styleUrls: ['./widget-choose.component.css']
 })
 export class WidgetChooseComponent implements OnInit {
-
-  uid: String;
   wid: String;
   pid: Page;
   wgid: String;
@@ -24,10 +22,8 @@ export class WidgetChooseComponent implements OnInit {
 
   ngOnInit() {
     this.router.params.subscribe(params => {
-      this.uid = params['uid'];
       this.wid = params['wid'];
       this.pid = params['pid'];
-      console.log('user id: ' + this.uid);
       console.log('web id: ' + this.wid);
       console.log('page id: ' + this.pid);
       this.widget.size = 1;

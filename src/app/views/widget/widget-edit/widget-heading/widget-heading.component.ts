@@ -10,7 +10,6 @@ import {Widget} from '../../../../model/widget.model.client';
   styleUrls: ['./widget-heading.component.css']
 })
 export class WidgetHeadingComponent implements OnInit {
-  uid: String;
   wid: String;
   pid: String;
   widget: Widget;
@@ -24,7 +23,6 @@ export class WidgetHeadingComponent implements OnInit {
 
   ngOnInit() {
     this.activeRouter.params.subscribe(params => {
-      this.uid = params['uid'];
       this.wid = params['wid'];
       this.pid = params['pid'];
       this.widgetService.findWidgetById(params['wgid']).subscribe((widget: any) => {
@@ -32,7 +30,6 @@ export class WidgetHeadingComponent implements OnInit {
           this.widget = widget;
         }
       });
-      console.log('user id: ' + this.uid);
       console.log('widget id: ' + this.widget._id);
       console.log('web id: ' + this.wid);
     });
@@ -48,7 +45,7 @@ export class WidgetHeadingComponent implements OnInit {
       this.activeRouter.params.subscribe(params => {
         return this.widgetService.updateWidget(this.widget._id, this.widget)
           .subscribe((widget: any) => {
-              this.router.navigate(['/user', this.uid, 'website' , this.wid, 'page', this.pid, 'widget']);
+              this.router.navigate(['website' , this.wid, 'page', this.pid, 'widget']);
             }
             ,
             (error) => {

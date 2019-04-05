@@ -1,16 +1,16 @@
 <nav class="navbar fixed-top cl-grey-navbar">
   <div class="container-fluid">
     <div>
-      <a routerLink="/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget" class="navbar-brand cl-text-black cl-icon-padding">
+      <a routerLink="/website/{{wid}}/page/{{pid}}/widget" class="navbar-brand cl-text-black cl-icon-padding">
         <i class="fas fa-angle-left"></i>
       </a>
       <a class="navbar-brand cl-text-black cl-text-bold cl-text-grey" routerLink="#">
         Widgets Edit
       </a>
     </div>
-    <a (click)="UpdateWidget()" routerLink="#" class="navbar-brand cl-text-black float-right cl-icon-padding">
+    <span (click)="UpdateWidget()" class="navbar-brand cl-text-black float-right cl-icon-padding">
       <i class="fas fa-check"></i>
-    </a>
+    </span>
   </div>
 </nav>
 
@@ -39,12 +39,12 @@
       <input [(ngModel)]="widget.width" name="widget-width" type="text" class="form-control" id="youtube-width" placeholder="100%">
     </div>
   </form>
-  <a class="btn btn-danger btn-block" (click)="DeleteWidget()" routerLink="/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget">Delete</a>
+  <a class="btn btn-danger btn-block" (click)="DeleteWidget()" routerLink="/website/{{wid}}/page/{{pid}}/widget">Delete</a>
 </div>
 
 <<nav class="navbar fixed-bottom cl-grey-navbar">
   <div class="container-fluid justify-content-end">
-    <a routerLink="/user/{{uid}}" class="navbar-brand cl-icon-padding cl-text-blue">
+    <a routerLink="/profile" class="navbar-brand cl-icon-padding cl-text-blue">
       <span class="fas fa-user"></span>
     </a>
   </div>

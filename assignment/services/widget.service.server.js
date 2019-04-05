@@ -185,7 +185,7 @@ module.exports=function(app) {
           .then(function(widget) {
             res.send("update url");
           })
-        const callbackUrl = "/user/"+userId + "/website/" + websiteId + "/page/" + pageId + "/widget/" + widgetId;
+        const callbackUrl = "/website/" + websiteId + "/page/" + pageId + "/widget/" + widgetId;
         res.redirect(callbackUrl);
       }, function(error) {
         if (error) {

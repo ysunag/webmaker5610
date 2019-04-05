@@ -2,27 +2,27 @@
   <div class="row container-fluid">
     <div class="col-sm-4 d-none d-sm-block">
 
-      <a routerLink="/user/{{uid}}" class="navbar-brand cl-text-white">
+      <a routerLink="/website" class="navbar-brand cl-text-white">
         <i class="fas fa-angle-left"></i>
       </a>
       <a class="cl-text-white navbar-brand cl-text-bold" routerLink="#">
         Websites
       </a>
-      <a routerLink="/user/{{uid}}/new" class="navbar-brand cl-text-white float-right cl-icon-padding">
+      <a routerLink="/website/new" class="navbar-brand cl-text-white float-right cl-icon-padding">
         <i class="fas fa-plus"></i>
       </a>
     </div>
 
     <div class="row col-sm-8">
-      <a routerLink="/user/{{uid}}" class="navbar-brand d-block d-sm-none cl-text-white">
+      <a routerLink="/website" class="navbar-brand d-block d-sm-none cl-text-white">
         <i class="fas fa-angle-left"></i>
       </a>
       <a class="cl-text-white navbar-brand cl-text-bold" routerLink="#">
         New Websites
       </a>
-      <a (click)="CreateWebsite()" routerLink="#" class="navbar-brand cl-text-white ml-auto">
+      <span (click)="CreateWebsite()" class="navbar-brand cl-text-white ml-auto">
         <i class="fas fa-check"></i>
-      </a>
+      </span>
 
     </div>
   </div>
@@ -32,8 +32,8 @@
   <div class="col-sm-4 d-none d-sm-block ">
     <ul class="list-group cl-list-group-borderless">
       <li *ngFor="let item of websites" class="list-group-item cl-list-item-borderless d-flex justify-content-between">
-        <a routerLink="/user/{{uid}}/website/{{item._id}}/page" class="cl-text-blue">{{item.name}}</a>
-        <a routerLink="/user/{{uid}}/website/{{item._id}}" class="cl-text-blue"><span class="fas fa-cog"></span></a>
+        <a routerLink="/website/{{item._id}}/page" class="cl-text-blue">{{item.name}}</a>
+        <a routerLink="/website/{{item._id}}" class="cl-text-blue"><span class="fas fa-cog"></span></a>
       </li>
     </ul>
   </div>
@@ -59,7 +59,7 @@
 
 <nav class="navbar fixed-bottom cl-blue-navbar">
   <div class="container-fluid justify-content-end">
-    <a routerLink="/user/{{uid}}" class="navbar-brand cl-text-white cl-icon-padding">
+    <a routerLink="/profile" class="navbar-brand cl-text-white cl-icon-padding">
       <span class="fas fa-user"></span>
     </a>
   </div>

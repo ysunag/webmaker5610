@@ -13,7 +13,6 @@ import {WebsiteService} from '../../../services/website.service.client';
   styleUrls: ['./page-list.component.css']
 })
 export class PageListComponent implements OnInit {
-  uid: String;
   wid: String;
   pages: Array<Page>;
 
@@ -21,7 +20,6 @@ export class PageListComponent implements OnInit {
 
   ngOnInit() {
     this.router.params.subscribe(params => {
-      this.uid = params['uid'];
       this.wid = params['wid'];
       this.websiteService.findWebsiteById(params['wid']).subscribe((website: any) => {
         if (website) {
@@ -33,7 +31,6 @@ export class PageListComponent implements OnInit {
       //     this.pages = pages;
       //   }
       // });
-      console.log('user id: ' + this.uid);
       console.log('web id: ' + this.wid);
     });
   }

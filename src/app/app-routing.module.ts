@@ -18,25 +18,24 @@ import {AuthGuard} from './services/auth-gard.service';
 const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'user/:uid', component: ProfileComponent, canActivate: [AuthGuard]},
   { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
-  { path: 'user/:uid/website', component: WebsiteListComponent },
-  { path: 'user/:uid/website/new', component: WebsiteNewComponent },
-  { path: 'user/:uid/website/:wid', component: WebsiteEditComponent },
-  { path: 'user/:uid/website/:wid/page', component: PageListComponent },
-  { path: 'user/:uid/website/:wid/page/new', component: PageNewComponent },
-  { path: 'user/:uid/website/:wid/page/:pid', component: PageEditComponent },
-  { path: 'user/:uid/website/:wid/page/:pid/widget', component: WidgetListComponent },
-  { path: 'user/:uid/website/:wid/page/:pid/widget/new', component: WidgetChooseComponent },
-  { path: 'user/:uid/website/:wid/page/:pid/widget/:wgid', component: WidgetEditComponent },
-  { path: 'user/:uid/website/:wid/page/:pid/widget/:wgid/flickr', component: FlickrImageSearchComponent}
+  { path: 'website', component: WebsiteListComponent, canActivate: [AuthGuard] },
+  { path: 'website/new', component: WebsiteNewComponent, canActivate: [AuthGuard] },
+  { path: 'website/:wid', component: WebsiteEditComponent, canActivate: [AuthGuard] },
+  { path: 'website/:wid/page', component: PageListComponent, canActivate: [AuthGuard] },
+  { path: 'website/:wid/page/new', component: PageNewComponent, canActivate: [AuthGuard] },
+  { path: 'website/:wid/page/:pid', component: PageEditComponent, canActivate: [AuthGuard] },
+  { path: 'website/:wid/page/:pid/widget', component: WidgetListComponent, canActivate: [AuthGuard] },
+  { path: 'website/:wid/page/:pid/widget/new', component: WidgetChooseComponent, canActivate: [AuthGuard] },
+  { path: 'website/:wid/page/:pid/widget/:wgid', component: WidgetEditComponent },
+  { path: 'website/:wid/page/:pid/widget/:wgid/flickr', component: FlickrImageSearchComponent, canActivate: [AuthGuard]}
 
 ];
 
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

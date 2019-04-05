@@ -25,8 +25,7 @@ module.exports=function(app) {
   passport.use(new LocalStrategy(localStrategy));
   passport.serializeUser(serializeUser);
   passport.deserializeUser(deserializeUser);
-
- // passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
+  passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
 
 
   app.post("/api/user", createUser);
@@ -39,6 +38,12 @@ module.exports=function(app) {
   app.post ('/api/register', register);
   app.post ('/api/loggedin', loggedin);
   app.get ('/facebook/login', passport.authenticate('facebook', { scope : 'email' }));
+  app.get('/auth/facebook/callback',
+    passport.authenticate('facebook', {
+      successRedirect: '/#/profile',
+      failureRedirect: '/#/login'
+    }));
+
 
 
   function serializeUser(user, done) {
@@ -65,8 +70,8 @@ module.exports=function(app) {
       .findUserByUserName(username)
       .then(
         function(user) {
-       //   if(user && bcrypt.compareSync(password, user.password)) {
-            if(user && password === user.password) {
+          if(user && bcrypt.compareSync(password, user.password)) {
+          //  if(user && password === user.password) {
             return done(null, user);
           } else {
             return done(null, false);

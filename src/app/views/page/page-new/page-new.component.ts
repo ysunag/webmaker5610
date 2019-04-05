@@ -9,7 +9,6 @@ import {Page} from '../../../model/page.model.client';
   styleUrls: ['./page-new.component.css']
 })
 export class PageNewComponent implements OnInit {
-  uid: String;
   wid: String;
   page: Page;
 
@@ -29,7 +28,7 @@ export class PageNewComponent implements OnInit {
       this.activeRouter.params.subscribe(params => {
         return this.pageService.createPage(this.wid, this.page)
           .subscribe((pages: any) => {
-              this.router.navigate(['/user', this.uid, 'website', this.wid, 'page']);
+              this.router.navigate(['website', this.wid, 'page']);
             },
             (error) => {
               if (error) {
@@ -44,9 +43,7 @@ export class PageNewComponent implements OnInit {
 
   ngOnInit() {
     this.activeRouter.params.subscribe(params => {
-      this.uid = params['uid'];
       this.wid = params['wid'];
-      console.log('user id: ' + this.uid);
       console.log('website id: ' + this.wid);
     });
   }

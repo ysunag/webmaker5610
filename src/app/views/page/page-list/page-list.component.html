@@ -1,14 +1,14 @@
 <nav class="navbar fixed-top cl-grey-navbar">
   <div class="container-fluid">
     <div>
-      <a routerLink="/user/{{uid}}/website" class="navbar-brand cl-text-black cl-icon-padding">
+      <a routerLink="/website" class="navbar-brand cl-text-black cl-icon-padding">
         <i class="fas fa-angle-left"></i>
       </a>
       <a class="navbar-brand cl-text-black cl-text-bold cl-text-grey" href="#">
         Pages
       </a>
     </div>
-    <a routerLink="/user/{{uid}}/website/{{wid}}/page/new" class="navbar-brand cl-text-black float-right cl-icon-padding">
+    <a routerLink="/website/{{wid}}/page/new" class="navbar-brand cl-text-black float-right cl-icon-padding">
       <i class="fas fa-plus"></i>
     </a>
 
@@ -19,8 +19,8 @@
 <div class="container">
   <ul class="list-group cl-list-group-borderless cl-text-blue">
     <li *ngFor="let item of pages" class="list-group-item cl-list-item-borderless d-flex justify-content-between">
-      <a routerLink="/user/{{uid}}/website/{{wid}}/page/{{item._id}}/widget" class="cl-text-blue">{{item.name}}</a>
-      <a routerLink="/user/{{uid}}/website/{{wid}}/page/{{item._id}}" class="cl-text-blue"><span class="fas fa-cog"></span></a>
+      <a routerLink="/website/{{wid}}/page/{{item._id}}/widget" class="cl-text-blue">{{item.name}}</a>
+      <a routerLink="/website/{{wid}}/page/{{item._id}}" class="cl-text-blue"><span class="fas fa-cog"></span></a>
     </li>
 
     <!--<li class="list-group-item cl-list-item-borderless d-flex justify-content-between">-->
@@ -49,7 +49,7 @@
 
 <nav class="navbar fixed-bottom cl-grey-navbar">
   <div class="container-fluid justify-content-end">
-    <a routerLink="/user/{{uid}}" class="navbar-brand cl-icon-padding cl-text-blue">
+    <a routerLink="/profile" class="navbar-brand cl-icon-padding cl-text-blue">
       <span class="fas fa-user"></span>
     </a>
   </div>

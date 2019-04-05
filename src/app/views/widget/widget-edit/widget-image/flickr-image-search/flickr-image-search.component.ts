@@ -11,8 +11,6 @@ import {FlickrService} from '../../../../../services/flickr.service.client';
   styleUrls: ['./flickr-image-search.component.css']
 })
 export class FlickrImageSearchComponent implements OnInit {
-
-  uid: String;
   wid: String;
   pid: String;
   searchText: String;
@@ -27,7 +25,6 @@ export class FlickrImageSearchComponent implements OnInit {
 
   ngOnInit() {
     this.activatedRouter.params.subscribe(params => {
-      this.uid = params['uid'];
       this.wid = params['wid'];
       this.pid = params['pid'];
       this.widgetService.findWidgetById(params['wgid']).subscribe((widget: any) => {
@@ -67,7 +64,7 @@ export class FlickrImageSearchComponent implements OnInit {
         (data: any) => {
           const result = data;
           if (result) {
-            this.router.navigate(['/user/' + this.uid + '/website/' + this.wid + '/page/' + this.pid + '/widget/' + this.widget._id] );
+            this.router.navigate(['/#/website/' + this.wid + '/page/' + this.pid + '/widget/' + this.widget._id] );
           } else {
             this.error = 'failed!';
           }

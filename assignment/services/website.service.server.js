@@ -124,17 +124,17 @@ module.exports=function(app) {
     websiteModel.deleteWebsite(websiteId)
       .then(function (website) {
         console.log("website removed!");
-        websiteModel
-          .findAllWebsitesForUser(website.developerId)
-          .then(function (websites) {
-            console.log("find websites by user id:" + websites);
-            res.json(websites);
-          }, function (error) {
-            if (error) {
-              console.log("Find websites by user id error:" + error);
-              res.send(error);
-            }
-          });
+        // websiteModel
+        //   .findAllWebsitesForUser(website.developerId)
+        //   .then(function (websites) {
+        //     console.log("find websites by user id:" + websites);
+        //     res.json(websites);
+        //   }, function (error) {
+        //     if (error) {
+        //       console.log("Find websites by user id error:" + error);
+        //       res.send(error);
+        //     }
+        //   });
       }, function (error) {
         if (error) {
           console.log("delete website error" + error);

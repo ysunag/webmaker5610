@@ -24,7 +24,6 @@ function createWebsiteForUser(userId,website) {
         .then(function(user){
           user.websites.push(responseWebsite);
           user.save();
-          return user.webistes;
         })
     });
 }

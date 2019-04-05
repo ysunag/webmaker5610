@@ -12,7 +12,6 @@ import {Widget} from '../../../../model/widget.model.client';
 export class WidgetHtmlComponent implements OnInit {
   error: string;
   alert: string;
-  uid: String;
   wid: String;
   pid: String;
   widget: Widget;
@@ -29,7 +28,6 @@ export class WidgetHtmlComponent implements OnInit {
     this.alert = '* Enter the widget name';
 
     this.activeRouter.params.subscribe(params => {
-      this.uid = params['uid'];
       this.wid = params['wid'];
       this.pid = params['pid'];
       this.widgetService.findWidgetById(params['wgid']).subscribe((widget: any) => {
@@ -38,7 +36,6 @@ export class WidgetHtmlComponent implements OnInit {
         }
       },
         (error: any) => console.log(error));
-      console.log('user id: ' + this.uid);
       console.log('widget id: ' + this.widget._id);
       console.log('web id: ' + this.wid);
     });
@@ -52,7 +49,7 @@ export class WidgetHtmlComponent implements OnInit {
       this.activeRouter.params.subscribe(params => {
         return this.widgetService.updateWidget(this.widget._id, this.widget)
           .subscribe((widget: any) => {
-            this.router.navigate(['/user', this.uid, 'website' , this.wid, 'page', this.pid, 'widget']);
+            this.router.navigate(['website' , this.wid, 'page', this.pid, 'widget']);
           }, (error) => {
             if (error) {
               this.errorMsg = error;

@@ -35,6 +35,10 @@ import { WidgetTextComponent } from './views/widget/widget-edit/widget-text/widg
 import { QuillEditorModule } from 'ngx-quill-editor';
 import {SharedService} from './services/shared.service.client';
 import {AuthGuard} from './services/auth-gard.service';
+import {HttpModule} from '@angular/http';
+import {provideLocationStrategy} from '@angular/router/src/router_module';
+import {HashLocationStrategy, LocationStrategy} from '@angular/common';
+
 
 @NgModule({
   declarations: [
@@ -65,11 +69,13 @@ import {AuthGuard} from './services/auth-gard.service';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpModule,
     HttpClientModule,
     FormsModule,
     QuillEditorModule,
   ],
-  providers: [UserService, WebsiteService, PageService, WidgetService, FlickrService, SharedService, AuthGuard],
+  providers: [UserService, WebsiteService, PageService, WidgetService, FlickrService, SharedService, AuthGuard,
+    { provide: LocationStrategy, useClass: HashLocationStrategy }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

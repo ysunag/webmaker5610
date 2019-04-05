@@ -3,7 +3,7 @@
     <a class="cl-text-white cl-text-bold navbar-brand" routerLink="/user/{{userId}}">
       Profile
     </a>
-    <a (click)="UpdateUser()" routerLink="/user/{{userId}}" class="navbar-brand cl-text-white">
+    <a (click)="UpdateUser()" routerLink="/profile" class="navbar-brand cl-text-white">
         <span class="fa fa-check">
         </span>
     </a>
@@ -30,7 +30,7 @@
       <input [(ngModel)]="user.lastName" name="lastName" type="text" class="form-control" id="last-name" placeholder="Wonderland">
     </div>
   </form>
-  <a class="btn btn-primary btn-block cl-blue-navbar" routerLink="/user/{{userId}}/website">Websites</a>
+  <a class="btn btn-primary btn-block cl-blue-navbar" routerLink="/website">Websites</a>
   <a (click)="DeleteUser()" class="btn btn-danger  btn-block" routerLink="/login">Delete User</a>
   <a (click)="Logout()" class="btn btn-danger  btn-block" routerLink="/login">Logout</a>
 </div>

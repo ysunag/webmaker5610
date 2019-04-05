@@ -2,27 +2,27 @@
   <div class="row container-fluid">
     <div class="col-sm-4 d-none d-sm-block">
 
-      <a routerLink="/user/{{uid}}/website" class="navbar-brand cl-text-white">
+      <a routerLink="/website" class="navbar-brand cl-text-white">
         <i class="fas fa-angle-left"></i>
       </a>
       <a class="cl-text-white navbar-brand cl-text-bold" href="#">
         Websites
       </a>
-      <a routerLink="/user/{{uid}}/website/new" class="navbar-brand cl-text-white float-right cl-icon-padding">
+      <a routerLink="/website/new" class="navbar-brand cl-text-white float-right cl-icon-padding">
         <i class="fas fa-plus"></i>
       </a>
     </div>
 
     <div class="row col-sm-8">
-      <a routerLink="/user/{{uid}}" class="navbar-brand d-block d-sm-none cl-text-white">
+      <a routerLink="/profile" class="navbar-brand d-block d-sm-none cl-text-white">
         <i class="fas fa-angle-left"></i>
       </a>
       <a class="cl-text-white navbar-brand cl-text-bold" href="#">
         Edit Websites
       </a>
-      <a (click)="UpdateWebsite()"  routerLink="#" class="navbar-brand cl-text-white ml-auto">
+      <span (click)="UpdateWebsite()"  class="navbar-brand cl-text-white ml-auto">
         <i class="fas fa-check"></i>
-      </a>
+      </span>
     </div>
   </div>
 </nav>
@@ -32,8 +32,8 @@
   <div class="col-sm-4 d-none d-sm-block">
     <ul class="list-group cl-list-group-borderless cl-text-blue">
       <li *ngFor="let item of websites" class="list-group-item cl-list-item-borderless d-flex justify-content-between">
-        <a routerLink="/user/{{uid}}/website/{{item._id}}/page" class="cl-text-blue">{{item.name}}</a>
-        <a routerLink="/user/{{uid}}/website/{{item._id}}" class="cl-text-blue"><span class="fas fa-cog"></span></a>
+        <a routerLink="/website/{{item._id}}/page" class="cl-text-blue">{{item.name}}</a>
+        <a routerLink="/website/{{item._id}}" class="cl-text-blue"><span class="fas fa-cog"></span></a>
       </li>
     </ul>
   </div>
@@ -55,14 +55,14 @@
         <textarea [(ngModel)]="website.description" name="website-description" id="website-description" class="form-control" rows="5"
                   placeholder="Blog is a blog-publishing service...."></textarea>
       </div>
-      <a class="btn btn-danger  btn-block" (click)="DeleteWebsite()" routerLink="/user/{{uid}}/website">Delete</a>
+      <a class="btn btn-danger  btn-block" (click)="DeleteWebsite()" routerLink="/website">Delete</a>
     </form>
   </div>
 </div>
 
 <nav class="navbar fixed-bottom cl-blue-navbar">
   <div class="container-fluid justify-content-end">
-    <a routerLink="/user/{{uid}}" class="navbar-brand cl-text-white cl-icon-padding">
+    <a routerLink="/profile" class="navbar-brand cl-text-white cl-icon-padding">
       <span class="fas fa-user"></span>
     </a>
   </div>

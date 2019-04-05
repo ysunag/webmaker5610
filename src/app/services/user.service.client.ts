@@ -26,7 +26,7 @@ export class UserService {
 
   baseUrl = environment.baseUrl;
 
-  options = {withCredentials: true}
+  options = {withCredentials: true};
 
 
   login(username: string, password: string) {

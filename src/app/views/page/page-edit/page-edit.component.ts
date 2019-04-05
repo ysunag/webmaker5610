@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {PageService} from '../../../services/page.service.client';
 import {Page} from '../../../model/page.model.client';
+import {SharedService} from '../../../services/shared.service.client';
 
 @Component({
   selector: 'app-page-edit',
@@ -18,7 +19,7 @@ export class PageEditComponent implements OnInit {
   errorMsg = 'Invalid page name!';
 
 
-  constructor(private activeRouter: ActivatedRoute, private pageService: PageService, private router: Router) {
+  constructor(private activeRouter: ActivatedRoute, private pageService: PageService, private router: Router, private sharedService: SharedService) {
     this.page = new Page('', '', '', '');
   }
 
@@ -31,7 +32,7 @@ export class PageEditComponent implements OnInit {
       this.activeRouter.params.subscribe(params => {
         return this.pageService.updatePage(this.page._id, this.page)
           .subscribe((pages: any) => {
-              this.router.navigate(['/user', this.uid, 'website', this.wid, 'page']);
+              this.router.navigate(['website', this.wid, 'page']);
             },
             (error) => {
               if (error) {
@@ -56,7 +57,7 @@ export class PageEditComponent implements OnInit {
 
   ngOnInit() {
     this.activeRouter.params.subscribe(params => {
-      this.uid = params['uid'];
+      this.uid = this.sharedService.user._id;
       this.wid = params['wid'];
       this.pageService.findPageById(params['pid']).subscribe((page: any) => {
         if (page) {

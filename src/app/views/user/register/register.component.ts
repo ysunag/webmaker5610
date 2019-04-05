@@ -53,7 +53,7 @@ export class RegisterComponent implements OnInit {
         .subscribe(
           (user: any) => {
             this.user = user;
-            this.router.navigate(['/user', this.user._id]);
+            this.router.navigate(['/profile']);
           },
           (error: any) => {
             if (error) {

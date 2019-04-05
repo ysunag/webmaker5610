@@ -15,7 +15,6 @@ import {PageService} from '../../../services/page.service.client';
 })
 export class WidgetListComponent implements OnInit {
 
-  uid: String;
   wid: String;
   pid: String;
   widgets: Array<Widget>;
@@ -26,7 +25,6 @@ export class WidgetListComponent implements OnInit {
 
   ngOnInit() {
     this.router.params.subscribe(params => {
-      this.uid = params['uid'];
       this.wid = params['wid'];
       this.pid = params['pid'];
       // this.widgetService.findWidgetsByPageId(params['pid']).subscribe((widgets: any) => {
@@ -39,7 +37,6 @@ export class WidgetListComponent implements OnInit {
           this.widgets = page.widgets;
         }
       });
-      console.log('user id: ' + this.uid);
       console.log('web id: ' + this.wid);
       console.log('page id: ' + this.pid);
       console.log(this.widgets);
