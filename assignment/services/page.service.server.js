@@ -101,17 +101,18 @@ module.exports=function(app) {
     pageModel.deletePage(pageId)
       .then(function (page) {
         console.log("page removed!");
-        pageModel
-          .findAllPagesForWebsite(page.websiteId)
-          .then(function (pages) {
-            console.log("find pages by website id:" + pages);
-            res.json(pages);
-          }, function (error) {
-            if (error) {
-              console.log("Find pages by website id error:" + error);
-              res.send(error);
-            }
-          });
+        // pageModel
+        //   .findAllPagesForWebsite(page.websiteId)
+        //   .then(function (pages) {
+        //     console.log("find pages by website id:" + pages);
+        //     res.json(pages);
+        //   }, function (error) {
+        //     if (error) {
+        //       console.log("Find pages by website id error:" + error);
+        //       res.send(error);
+        //     }
+        //   });
+        res.json(page);
       }, function (error) {
         if (error) {
           console.log("delete page error" + error);

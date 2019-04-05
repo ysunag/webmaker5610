@@ -7,8 +7,8 @@ const bodyParser = require('body-parser');
 const app = express();
 const mongoose = require('mongoose');
 
-// const connectionString = 'mongodb://127.0.0.1:27017/webmaker5610';
-const connectionString = 'mongodb://webmaker5610:webmaker5610@ds213705.mlab.com:13705/heroku_z8v8k6tg';
+const connectionString = 'mongodb://127.0.0.1:27017/webmaker5610';
+// const connectionString = 'mongodb://webmaker5610:webmaker5610@ds213705.mlab.com:13705/heroku_z8v8k6tg';
 mongoose.Promise = global.Promise;
 const client = mongoose.connect( connectionString, { useNewUrlParser: true });
 
