@@ -64,7 +64,7 @@ export class FlickrImageSearchComponent implements OnInit {
         (data: any) => {
           const result = data;
           if (result) {
-            this.router.navigate(['/#/website/' + this.wid + '/page/' + this.pid + '/widget/' + this.widget._id] );
+            this.router.navigate(['/website/', this.wid, 'page', this.pid, 'widget', this.widget._id] );
           } else {
             this.error = 'failed!';
           }
